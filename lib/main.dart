@@ -3,6 +3,7 @@ import 'package:practice_app/Pages/createNewScreen.dart';
 import 'package:practice_app/Pages/homeScreen.dart';
 import 'package:practice_app/Pages/viewUnfinished.dart';
 import 'package:practice_app/pages/calendarScreen.dart';
+import 'package:practice_app/pages/settings.dart';
 //these imports are needed to allow the routing to work
 
 void main() {
@@ -13,7 +14,8 @@ void main() {
       '/homeScreen': (context) => HomeScreen(),
       '/viewUnfinished': (context) => ViewUnfinished(),
       '/createNewScreen': (context) => CreateNewScreen(),
-      '/calendarScreen': (context) => CalendarScreen()
+      '/calendarScreen': (context) => CalendarScreen(),
+      '/settings': (context) => Settings(),
       //sets the '/routename' to point to the widgets in the other dart
       //files
     },
