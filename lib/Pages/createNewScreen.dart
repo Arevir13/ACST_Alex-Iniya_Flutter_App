@@ -8,6 +8,19 @@ class CreateNewScreen extends StatefulWidget {
 }
 
 class CreateNewScreenState extends State<CreateNewScreen> {
+  final controller = TextEditingController();
+  final controller2 = TextEditingController();
+  final controller3 = TextEditingController();
+
+  String title = '';
+  @override
+  void dispose() {
+    controller.dispose();
+    controller2.dispose();
+    controller3.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -15,16 +28,94 @@ class CreateNewScreenState extends State<CreateNewScreen> {
         title: Text('Create new'),
         centerTitle: true,
       ),
-      body: Center(
+      body: Container(
+          alignment: Alignment.center,
+          height: 535,
+          width: 500,
           child: Column(
-        //currently WIP
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[],
-      )),
+            children: <Widget>[
+              Text(
+                'Enter a Title for your agenda',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Container(
+                child: TextField(
+                  controller: controller,
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), hintText: 'Enter A title'),
+                  onSubmitted: setTitle,
+                ),
+                width: 400,
+                height: 40,
+                padding: EdgeInsets.symmetric(horizontal: 75),
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.only(bottom: 20),
+              ),
+              Row(
+                children: [
+                  Text(
+                    '  Enter Item name',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              Container(
+                child: TextFormField(
+                  controller: controller2,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), hintText: 'Enter a Name'),
+                ),
+                width: 500,
+                height: 40,
+                padding: EdgeInsets.only(right: 150),
+                margin: EdgeInsets.fromLTRB(10, 0, 0, 30),
+              ),
+              Row(
+                children: [
+                  Text(
+                    '  Enter Item Description',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              Container(
+                child: TextFormField(
+                  controller: controller3,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter a Description'),
+                  textAlign: TextAlign.start,
+                  maxLines: 3,
+                  minLines: 1,
+                ),
+                width: 400,
+                height: 92,
+                padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                margin: EdgeInsets.fromLTRB(10, 0, 0, 30),
+              ),
+            ],
+          )),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        label: Text('Finish'),
+        icon: Icon(Icons.check),
+        backgroundColor: Colors.green[500],
+      ),
     );
   }
 
-//everything below this is currently a W.I.P
+  void setTitle(String s) {
+    setState(() {
+      title = s;
+    });
+  }
+
+  String getTitle() {
+    return title;
+  }
+
+/*everything below this is currently a W.I.P
   List agenda;
   Agenda() {
     agenda = <Item>[];
@@ -138,5 +229,5 @@ class Item {
       return name + ': ' + description + ', Checked, Repeat ON';
     }
     return name + ': ' + description + ', Checked, Repeat OFF';
-  }
+  }*/
 }
