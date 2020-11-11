@@ -9,8 +9,3 @@ class ColorWidget {
     this.iconColor = iconColor;
   }
 }
-
-void main() {
-  ColorWidget pinkIcon = ColorWidget('pink', Colors.pink);
-  print(pinkIcon);
-}

@@ -11,9 +11,12 @@ class _SettingsState extends State<Settings> {
   List<ColorWidget> themeOptions = [
     ColorWidget('red', Colors.red),
     ColorWidget('blue', Colors.blue),
-    ColorWidget('pink', Colors.pink)
+    ColorWidget('pink', Colors.pink),
+    ColorWidget('purple', Colors.purple),
   ];
-  ColorWidget dropdownValue = ColorWidget('purple', Colors.purple);
+  //creates list ColorWidgets of available theme colors (for dropdown menu)
+  ColorWidget colorSelected = ColorWidget('purple', Colors.purple);
+  //starting value for color is purple
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,17 +27,27 @@ class _SettingsState extends State<Settings> {
       ),
       body: Column(children: <Widget>[
         DropdownButton<ColorWidget>(
-            hint: Text('Choose your color'),
+            hint: Text(
+              'Choose your theme color',
+            ), // words of dropdown
             items: themeOptions.map((ColorWidget dropdownColor) {
               return DropdownMenuItem<ColorWidget>(
                 value: dropdownColor,
-                child: Text(dropdownColor.colorName),
+                child: Text(
+                  dropdownColor.colorName,
+                  style: TextStyle(color: dropdownColor.iconColor),
+                ),
               );
             }).toList(),
-            onChanged: (ColorWidget colorSelected) {
+            //creates map to go through list of ColorWidgets (themeOptions)
+            //sets value of each button in dropdown to the ColorWidget
+            //sets text of each button in dropdown to name of the ColorWidget
+            onChanged: (ColorWidget dropdownValue) {
               setState(() {
-                dropdownValue = colorSelected;
+                colorSelected = dropdownValue;
               });
+              //when dropdown option pressed, changes value of colorSelected
+              // to the selected color widget
             }),
       ]),
     );
