@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
+import 'package:practice_app/Custom_Widgets/Agenda_Widget.dart';
 
 class CreateNewScreen extends StatefulWidget {
   @override
@@ -12,7 +12,11 @@ class CreateNewScreenState extends State<CreateNewScreen> {
   final controller2 = TextEditingController();
   final controller3 = TextEditingController();
 
-  String title = '';
+  String title;
+  String name;
+  String description;
+  static Agenda agenda;
+
   @override
   void dispose() {
     controller.dispose();
@@ -44,7 +48,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
                   textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), hintText: 'Enter A title'),
-                  onSubmitted: setTitle,
+                  onSubmitted: setT,
                 ),
                 width: 400,
                 height: 40,
@@ -61,10 +65,11 @@ class CreateNewScreenState extends State<CreateNewScreen> {
                 ],
               ),
               Container(
-                child: TextFormField(
+                child: TextField(
                   controller: controller2,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), hintText: 'Enter a Name'),
+                  onSubmitted: setN,
                 ),
                 width: 500,
                 height: 40,
@@ -80,24 +85,26 @@ class CreateNewScreenState extends State<CreateNewScreen> {
                 ],
               ),
               Container(
-                child: TextFormField(
+                child: TextField(
                   controller: controller3,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Enter a Description'),
-                  textAlign: TextAlign.start,
-                  maxLines: 3,
-                  minLines: 1,
+                  onSubmitted: setDesc,
                 ),
                 width: 400,
-                height: 92,
                 padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                margin: EdgeInsets.fromLTRB(10, 0, 0, 30),
+                margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
               ),
             ],
           )),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          agenda = Agenda();
+          agenda.setTitle(getT());
+          agenda.addItem(getN(), getDesc(), false, false);
+          Navigator.pushNamed(context, '/calendarScreen');
+        },
         label: Text('Finish'),
         icon: Icon(Icons.check),
         backgroundColor: Colors.green[500],
@@ -105,129 +112,37 @@ class CreateNewScreenState extends State<CreateNewScreen> {
     );
   }
 
-  void setTitle(String s) {
+  void setT(String s) {
     setState(() {
       title = s;
     });
   }
 
-  String getTitle() {
+  void setN(String s) {
+    setState(() {
+      name = s;
+    });
+  }
+
+  void setDesc(String s) {
+    setState(() {
+      description = s;
+    });
+  }
+
+  String getT() {
     return title;
   }
 
-/*everything below this is currently a W.I.P
-  List agenda;
-  Agenda() {
-    agenda = <Item>[];
-  }
-
-  void addItem(String name, String desc, bool check, bool rep) {
-    Item x = Item(name, desc, check, rep);
-    setState(() {
-      agenda.add(x);
-    });
-  }
-
-  void setName(int index, String newName) {
-    setState(() {
-      agenda[index].setName(newName);
-    });
-  }
-
-  void setDescription(int index, String newDesc) {
-    setState(() {
-      agenda[index].setDescription(newDesc);
-    });
-  }
-
-  void setChecked(int index, bool c) {
-    setState(() {
-      agenda[index].setChecked(c);
-    });
-  }
-
-  void setRepeat(int index, bool r) {
-    setState(() {
-      agenda[index].setChecked(r);
-    });
-  }
-
-  void removeItem(int index) {
-    setState(() {
-      agenda.removeAt(index);
-    });
-  }
-
-  String getName(int index) {
-    return agenda[index].getName();
-  }
-
-  String getDescription(int index) {
-    return agenda[index].getDescription();
-  }
-
-  bool getChecked(int index) {
-    return agenda[index].getChecked();
-  }
-
-  bool getRepeat(int index) {
-    return agenda[index].getRepeat();
-  }
-}
-
-class Item {
-  String name;
-  String description;
-  bool checked;
-  bool repeat;
-
-  Item(String n, String d, bool c, bool r) {
-    name = n;
-    description = d;
-    checked = c;
-    repeat = r;
-  }
-  void setName(String newName) {
-    name = newName;
-  }
-
-  void setDescription(String newDesc) {
-    description = newDesc;
-  }
-
-  void setChecked(bool newCheck) {
-    checked = newCheck;
-  }
-
-  void setRepeat(bool newRep) {
-    repeat = newRep;
-  }
-
-  String getName() {
+  String getN() {
     return name;
   }
 
-  String getDescription() {
+  String getDesc() {
     return description;
   }
 
-  bool getChecked() {
-    return checked;
+  Agenda getAgenda() {
+    return agenda;
   }
-
-  bool getRepeat() {
-    return repeat;
-  }
-
-  String toString() {
-    if (checked == false) {
-      if (repeat == true) {
-        return name + ': ' + description + ', Unchecked, Repeat ON';
-      }
-      return name + ': ' + description + ', Unchecked, Repeat OFF';
-    } else if (checked && repeat == true) {
-      return name + ': ' + description + ', Checked, Repeat ON';
-    }
-    return name + ': ' + description + ', Checked, Repeat OFF';
-  }*/
 }

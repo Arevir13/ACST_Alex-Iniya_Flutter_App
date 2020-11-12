@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:practice_app/Custom_widgets/Agenda_Widget.dart';
+import 'package:practice_app/Pages/createNewScreen.dart';
 
 class CalendarScreen extends StatefulWidget {
   @override
@@ -13,9 +15,17 @@ class CalendarScreenState extends State<CalendarScreen> {
         backgroundColor: Colors.purple,
         title: Text('Calendar'),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {
+            Navigator.pushNamed(context, '/homeScreen');
+          },
+        ),
       ),
       body: Center(
-        child: Text('To Be implemented'),
+        child: Card(
+          child: Text(CreateNewScreenState.agenda.toString()),
+        ),
       ),
     );
   }
