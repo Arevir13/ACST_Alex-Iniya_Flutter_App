@@ -25,31 +25,42 @@ class _SettingsState extends State<Settings> {
         title: Text('Settings'),
         centerTitle: true,
       ),
-      body: Column(children: <Widget>[
-        DropdownButton<ColorWidget>(
-            hint: Text(
-              'Choose your theme color',
-            ), // words of dropdown
-            items: themeOptions.map((ColorWidget dropdownColor) {
-              return DropdownMenuItem<ColorWidget>(
-                value: dropdownColor,
-                child: Text(
-                  dropdownColor.colorName,
-                  style: TextStyle(color: dropdownColor.iconColor),
-                ),
-              );
-            }).toList(),
-            //creates map to go through list of ColorWidgets (themeOptions)
-            //sets value of each button in dropdown to the ColorWidget
-            //sets text of each button in dropdown to name of the ColorWidget
-            onChanged: (ColorWidget dropdownValue) {
-              setState(() {
-                colorSelected = dropdownValue;
-              });
-              //when dropdown option pressed, changes value of colorSelected
-              // to the selected color widget
-            }),
-      ]),
+      body: Row(
+        children: <Widget>[
+          DropdownButton<ColorWidget>(
+              hint: Text(
+                'Choose your theme color',
+              ), // words of dropdown
+              items: themeOptions.map((ColorWidget dropdownColor) {
+                return DropdownMenuItem<ColorWidget>(
+                    value:
+                        dropdownColor, //value of selected dropdown is the ColorWidget
+                    child: Row(
+                      children: <Widget>[
+                        dropdownColor.colorIcon, //circle icon to display oolor
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          dropdownColor
+                              .colorName, //name of color of dropdown option
+                          style: TextStyle(color: dropdownColor.iconColor),
+                        ),
+                      ],
+                    ));
+              }).toList(),
+              //creates map to go through list of ColorWidgets (themeOptions)
+              //sets value of each button in dropdown to the ColorWidget
+              //sets text of each button in dropdown to name of the ColorWidget
+              onChanged: (ColorWidget dropdownValue) {
+                setState(() {
+                  colorSelected = dropdownValue;
+                });
+                //when dropdown option pressed, changes value of colorSelected
+                // to the selected color widget
+              }),
+        ],
+      ),
     );
   }
 }
