@@ -48,7 +48,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
                   textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), hintText: 'Enter A title'),
-                  onSubmitted: setT,
+                  onChanged: setT,
                 ),
                 width: 400,
                 height: 40,
@@ -69,7 +69,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
                   controller: controller2,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), hintText: 'Enter a Name'),
-                  onSubmitted: setN,
+                  onChanged: setN,
                 ),
                 width: 500,
                 height: 40,
@@ -90,7 +90,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Enter a Description'),
-                  onSubmitted: setDesc,
+                  onChanged: setDesc,
                 ),
                 width: 400,
                 padding: EdgeInsets.fromLTRB(0, 0, 20, 0),

@@ -59,7 +59,7 @@ class Agenda {
   }
 
   String toString() {
-    return "Title: " + title + itemString();
+    return "Title: " + title + " " + itemString();
   }
 }
 
