@@ -1,3 +1,5 @@
+library my_prj.globals;
+
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/ColorWidget.dart';
 
@@ -15,7 +17,7 @@ class _SettingsState extends State<Settings> {
     ColorWidget('purple', Colors.purple),
   ];
   //creates list ColorWidgets of available theme colors (for dropdown menu)
-  ColorWidget colorSelected = ColorWidget('purple', Colors.purple);
+  //ColorWidget colorSelected = ColorWidget('purple', Colors.purple);
   //starting value for color is purple
 
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class _SettingsState extends State<Settings> {
               //sets text of each button in dropdown to name of the ColorWidget
               onChanged: (ColorWidget dropdownValue) {
                 setState(() {
-                  colorSelected = dropdownValue;
+                  globals.colorSelected = dropdownValue;
                 });
                 //when dropdown option pressed, changes value of colorSelected
                 // to the selected color widget
