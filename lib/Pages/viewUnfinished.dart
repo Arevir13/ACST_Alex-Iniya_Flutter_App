@@ -11,7 +11,7 @@ class ViewUnfinishedState extends State<ViewUnfinished> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text('Create new'),
+        title: Text('All unfinished Items'),
         centerTitle: true,
       ),
       body: Center(
