@@ -1,3 +1,4 @@
+import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
 import 'package:flutter/material.dart';
 
 class ViewUnfinished extends StatefulWidget {
@@ -15,7 +16,7 @@ class ViewUnfinishedState extends State<ViewUnfinished> {
         centerTitle: true,
       ),
       body: Center(
-        child: Text('To Be implemented'),
+        child: Text(globals.agendaDisplay[0].itemString()),
       ),
     );
   }
