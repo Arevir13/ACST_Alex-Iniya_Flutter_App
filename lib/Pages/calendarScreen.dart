@@ -49,8 +49,9 @@ class CalendarScreenState extends State<CalendarScreen> {
         ),
       ),
       body: Column(
-          children: 
-      ),
+          children: globals.agendaDisplay
+              .map((agenda) => agendaTemplate(agenda))
+              .toList()),
     );
   }
 }
