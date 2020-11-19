@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/Agenda_Widget.dart';
+import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
 
 class CreateNewScreen extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
   String title;
   String name;
   String description;
-  static Agenda agenda;
+  Agenda agenda;
 
   @override
   void dispose() {
@@ -103,6 +104,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
           agenda = Agenda();
           agenda.setTitle(getT());
           agenda.addItem(getN(), getDesc(), false, false);
+          globals.agendaDisplay.add(agenda);
           Navigator.pushNamed(context, '/calendarScreen');
         },
         label: Text('Finish'),
@@ -140,9 +142,5 @@ class CreateNewScreenState extends State<CreateNewScreen> {
 
   String getDesc() {
     return description;
-  }
-
-  Agenda getAgenda() {
-    return agenda;
   }
 }

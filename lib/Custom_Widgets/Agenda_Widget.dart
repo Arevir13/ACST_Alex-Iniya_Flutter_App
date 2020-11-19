@@ -50,6 +50,10 @@ class Agenda {
     title = t;
   }
 
+  String getTitle() {
+    return title;
+  }
+
   String itemString() {
     String s = '';
     for (Item x in agenda) {

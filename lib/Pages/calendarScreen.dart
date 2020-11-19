@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:practice_app/Pages/createNewScreen.dart';
+import 'package:practice_app/Custom_Widgets/Agenda_Widget.dart';
+import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
 
 class CalendarScreen extends StatefulWidget {
   @override
@@ -8,6 +9,32 @@ class CalendarScreen extends StatefulWidget {
 }
 
 class CalendarScreenState extends State<CalendarScreen> {
+  Widget agendaTemplate(Agenda agenda) {
+    return Card(
+      child: Column(
+        children: <Widget>[
+          Text(
+            agenda.getTitle(),
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14.0,
+                color: Colors.black),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            agenda.itemString(),
+            style: TextStyle(
+              fontSize: 11.0,
+              color: Colors.blue,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -21,10 +48,8 @@ class CalendarScreenState extends State<CalendarScreen> {
           },
         ),
       ),
-      body: Center(
-        child: Card(
-          child: Text(CreateNewScreenState.agenda.toString()),
-        ),
+      body: Column(
+          children: 
       ),
     );
   }
