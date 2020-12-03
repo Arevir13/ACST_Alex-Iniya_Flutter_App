@@ -12,6 +12,7 @@ class CalendarScreenState extends State<CalendarScreen> {
   Widget agendaTemplate(Agenda agenda) {
     return Card(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
             agenda.getTitle(),
@@ -29,6 +30,10 @@ class CalendarScreenState extends State<CalendarScreen> {
               fontSize: 11.0,
               color: Colors.blue,
             ),
+          ),
+          SizedBox(
+            height: 30,
+            child: FlatButton(onPressed: null, child: Text('Edit')),
           ),
         ],
       ),
@@ -48,10 +53,14 @@ class CalendarScreenState extends State<CalendarScreen> {
           },
         ),
       ),
-      body: Column(
-          children: globals.agendaDisplay
-              .map((agenda) => agendaTemplate(agenda))
-              .toList()),
+      body: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: globals.agendaDisplay
+                .map((agenda) => agendaTemplate(agenda))
+                .toList()),
+      ),
     );
   }
 }
