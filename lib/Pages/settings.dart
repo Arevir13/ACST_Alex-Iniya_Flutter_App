@@ -33,13 +33,8 @@ class _SettingsState extends State<Settings> {
               ), // words of dropdown
               items: themeOptions.map((ColorWidget dropdownColor) {
                 return DropdownMenuItem<ColorWidget>(
-<<<<<<< HEAD
-                    value:
-                        dropdownColor, //value of selected dropdown is the ColorWidget
-=======
                     value: dropdownColor,
                     //value of selected dropdown is the ColorWidget
->>>>>>> testing
                     child: Row(
                       children: <Widget>[
                         dropdownColor.colorIcon, //circle icon to display oolor
