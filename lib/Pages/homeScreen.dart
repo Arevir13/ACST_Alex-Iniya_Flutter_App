@@ -17,7 +17,7 @@ class HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           //appbar widget is premade and has useful features
           //like a back button to link widgets
-          backgroundColor: Colors.purple[800],
+          backgroundColor: Colors.purple,
           title: Text('Welcome to the Agenda App'),
           centerTitle: true,
           actions: <Widget>[

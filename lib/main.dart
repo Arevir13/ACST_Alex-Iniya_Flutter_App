@@ -5,9 +5,11 @@ import 'package:practice_app/Pages/calendarScreen.dart';
 import 'package:practice_app/Pages/createNewScreen.dart';
 import 'package:practice_app/Pages/homeScreen.dart';
 import 'package:practice_app/Pages/viewUnfinished.dart';
+
 import 'package:practice_app/pages/settings.dart';
 import 'package:practice_app/Pages/displayScreen.dart';
 import 'package:practice_app/Pages/editingScreen.dart';
+
 //these imports are needed to allow the routing to work
 
 void main() {
