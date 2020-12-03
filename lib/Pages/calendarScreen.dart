@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/Agenda_Widget.dart';
 import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
-import 'package:practice_app/main.dart';
 
 class CalendarScreen extends StatefulWidget {
   @override
