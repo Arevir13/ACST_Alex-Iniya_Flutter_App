@@ -105,7 +105,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
           agenda.setTitle(getT());
           agenda.addItem(getN(), getDesc(), false, false);
           globals.agendaDisplay.add(agenda);
-          Navigator.pushNamed(context, '/calendarScreen');
+          Navigator.pushNamed(context, '/displayScreen');
         },
         label: Text('Finish'),
         icon: Icon(Icons.check),
