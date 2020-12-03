@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class CalendarScreen extends StatefulWidget {
+class EditingScreen extends StatefulWidget {
   @override
-  CalendarScreenState createState() => CalendarScreenState();
+  EditingScreenState createState() => EditingScreenState();
 }
 
-class CalendarScreenState extends State<CalendarScreen> {
+class EditingScreenState extends State<EditingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple[800],
-        title: Text('Calendar'),
+        title: Text('Edit'),
         centerTitle: true,
       ),
       body: Center(
