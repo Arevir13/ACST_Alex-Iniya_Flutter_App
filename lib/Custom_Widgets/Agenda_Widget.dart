@@ -1,3 +1,7 @@
+//This is a class file that is meant to be imported into other files when working
+//with agenda items so those files can have access to all the functions
+//related to the agenda and its items.
+
 class Agenda {
   List agenda;
   String title;
