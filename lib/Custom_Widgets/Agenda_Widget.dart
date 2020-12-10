@@ -66,6 +66,18 @@ class Agenda {
     return s;
   }
 
+  String unfinishedString() {
+    String s = '';
+    for (int i = 0; i < agenda.length; i++) {
+      if (agenda[i] != null) {
+        if (agenda[i].getChecked() == false) {
+          s += (agenda[i].toString() + "\n");
+        }
+      } else {}
+    }
+    return s;
+  }
+
   String toString() {
     return "Title: " + title + " " + itemString();
   }

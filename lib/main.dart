@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:practice_app/Pages/calendarScreen.dart';
 import 'package:practice_app/Pages/createNewScreen.dart';
