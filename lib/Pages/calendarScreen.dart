@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
 
 class CalendarScreen extends StatefulWidget {
   @override
@@ -9,7 +10,7 @@ class CalendarScreenState extends State<CalendarScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[800],
+        backgroundColor: globals.colorSelected.getColor(),
         title: Text('Calendar'),
         centerTitle: true,
       ),

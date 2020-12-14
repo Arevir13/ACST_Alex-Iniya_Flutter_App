@@ -55,7 +55,7 @@ class ViewUnfinishedState extends State<ViewUnfinished> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple,
+        backgroundColor: globals.colorSelected.getColor(),
         title: Text('All unfinished Items'),
         centerTitle: true,
       ),

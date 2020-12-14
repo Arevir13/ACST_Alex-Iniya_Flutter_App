@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
 
 //make sure to import this
 class HomeScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           //appbar widget is premade and has useful features
           //like a back button to link widgets
-          backgroundColor: Colors.purple,
+          backgroundColor: globals.colorSelected.getColor(),
           title: Text('Welcome to the Agenda App'),
           centerTitle: true,
           actions: <Widget>[

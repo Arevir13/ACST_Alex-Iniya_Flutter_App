@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/ColorWidget.dart';
+import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
 
 class Settings extends StatefulWidget {
   @override
@@ -8,20 +9,10 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   @override
-  List<ColorWidget> themeOptions = [
-    ColorWidget('red', Colors.red),
-    ColorWidget('blue', Colors.blue),
-    ColorWidget('pink', Colors.pink),
-    ColorWidget('purple', Colors.purple),
-  ];
-  //creates list ColorWidgets of available theme colors (for dropdown menu)
-  ColorWidget colorSelected = ColorWidget('purple', Colors.purple);
-  //starting value for color is purple
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple,
+        backgroundColor: globals.colorSelected.getColor(),
         title: Text('Settings'),
         centerTitle: true,
       ),
@@ -31,7 +22,7 @@ class _SettingsState extends State<Settings> {
               hint: Text(
                 'Choose your theme color',
               ), // words of dropdown
-              items: themeOptions.map((ColorWidget dropdownColor) {
+              items: globals.themeOptions.map((ColorWidget dropdownColor) {
                 return DropdownMenuItem<ColorWidget>(
                     value: dropdownColor,
                     //value of selected dropdown is the ColorWidget
@@ -54,10 +45,10 @@ class _SettingsState extends State<Settings> {
               //sets text of each button in dropdown to name of the ColorWidget
               onChanged: (ColorWidget dropdownValue) {
                 setState(() {
-                  colorSelected = dropdownValue;
+                  globals.colorSelected = dropdownValue;
                 });
                 //when dropdown option pressed, changes value of colorSelected
-                // to the selected color widget
+                //to the selected color widget
               }),
         ],
       ),
