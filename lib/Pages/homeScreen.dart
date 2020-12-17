@@ -22,7 +22,7 @@ class HomeScreenState extends State<HomeScreen> {
           title: Text('Welcome to the Agenda App'),
           centerTitle: true,
           actions: <Widget>[
-            //creates settings button on app bar
+            //creates settings button on top right of app bar
             IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/settings');
@@ -32,6 +32,7 @@ class HomeScreenState extends State<HomeScreen> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
+          //create new button ("+" at the bottom of the screen)
           onPressed: () {
             Navigator.pushNamed(context, '/createNewScreen');
           },
@@ -48,6 +49,7 @@ class HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             //children of type widget
             FlatButton.icon(
+              //button to bring to Calendar Screen
               onPressed: () {
                 Navigator.pushNamed(context, '/calendarScreen');
               },
@@ -56,6 +58,7 @@ class HomeScreenState extends State<HomeScreen> {
               highlightColor: Colors.blue,
             ),
             FlatButton.icon(
+              //button to bring to viewUnfinished Screen
               onPressed: () {
                 Navigator.pushNamed(context, '/viewUnfinished');
               },

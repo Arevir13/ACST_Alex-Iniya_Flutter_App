@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//ColorWidget class
+//each Color Widget has a name (the color), its color,
+//& a circle icon of that color
 class ColorWidget {
   String colorName;
   Color iconColor;
@@ -14,11 +17,5 @@ class ColorWidget {
   Color getColor() {
     return iconColor;
   }
+  //method to return color of ColorWidget
 }
-
-/*main() {
-  ColorWidget hello = ColorWidget("green", Colors.green);
-  print("hi");
-  print(hello.iconColor);
-}
-*/
