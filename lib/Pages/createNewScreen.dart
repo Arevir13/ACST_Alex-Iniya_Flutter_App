@@ -17,6 +17,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
   String name;
   String description;
   Agenda agenda;
+
   //Creating an agenda variable and other variables to pass into agenda
 
   @override
@@ -118,7 +119,15 @@ class CreateNewScreenState extends State<CreateNewScreen> {
           agenda = Agenda();
           agenda.setTitle(getT());
           agenda.addItem(getN(), getDesc(), false, false);
+          //the agendaDisplayIndex is set to null by default when the app starts
+          //so it is set to 0 so it can assign the first index to the first agenda
+          if (globals.agendaDisplayIndex == null) {
+            globals.agendaDisplayIndex = 0;
+          }
+          //actually assigns the value to the agenda and increments it by 1 for the next agenda
+          agenda.setDisplayIndex(globals.agendaDisplayIndex);
           globals.agendaDisplay.add(agenda);
+          globals.agendaDisplayIndex++;
           Navigator.pushNamed(context, '/displayScreen');
           //the agenda variable that was created earlier is initialized
           //using the imported constructor from the agenda widget.dart file.
