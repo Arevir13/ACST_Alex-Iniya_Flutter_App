@@ -74,7 +74,7 @@ class EditingScreenState extends State<EditingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[800],
+        backgroundColor: globals.colorSelected.getColor(),
         title: Text(globals.agendaDisplay[globals.currentIndex].getTitle()),
         centerTitle: true,
       ),
