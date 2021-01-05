@@ -66,6 +66,12 @@ class HomeScreenState extends State<HomeScreen> {
               label: Text('View Unfinished'),
               highlightColor: Colors.blue,
             ),
+            FlatButton.icon(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/displayScreen');
+                },
+                icon: Icon(Icons.view_list),
+                label: Text('View Agendas'))
           ],
         )));
   }

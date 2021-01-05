@@ -5,10 +5,30 @@
 class Agenda {
   List agenda;
   String title;
+  int displayIndex;
   Agenda() {
     agenda = <Item>[];
     title = '';
+    displayIndex = null;
   }
+//displayIndex methods will be used in the editing screen so it knows
+//what index of the global agenda list to display
+  void setDisplayIndex(int i) {
+    displayIndex = i;
+  }
+
+  int getDisplayIndex() {
+    return displayIndex;
+  }
+
+  int getItemIndex(Item item) {
+    return agenda.indexOf(item);
+  }
+
+  List getItemList() {
+    return agenda;
+  }
+
   void addItem(String name, String desc, bool check, bool rep) {
     Item x = Item(name, desc, check, rep);
     agenda.add(x);
