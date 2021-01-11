@@ -8,70 +8,45 @@ class EditingScreen extends StatefulWidget {
 }
 
 class EditingScreenState extends State<EditingScreen> {
-  //uses the currentIndex global variable to pull up the correct agenda
   String tempName;
   String tempDescription;
-  TextEditingController name;
-  TextEditingController description;
+  TextEditingController name = TextEditingController();
+  TextEditingController description = TextEditingController();
 
+  @override
+  void dispose() {
+    name.dispose();
+    description.dispose();
+    super.dispose();
+  }
+
+  //this simple itemTemplate just displays the items information
   Widget itemTemplate(Item item) {
+    int index = globals.agendaDisplay[globals.currentIndex].getItemIndex(item);
     return Card(
       child: Column(
         children: [
-          //displays the items position in the agenda(not actuall index)
-          Text('Edit Name'),
-          //textFormField to edit the name
-          TextFormField(
-            //has the field initially filled out with the previous name
-            //if it exists
-            controller: name,
-            initialValue: item.getName(),
-            //calls the function that sets the name
-            onChanged: setName,
-          ),
-          //clear button for the field (Currently doesnt work)
-          RaisedButton(
+          Text('Name: ' + item.getName()),
+          Text('Description: ' + item.getDescription()),
+          IconButton(
             onPressed: () {
-              name.clear();
+              //option to remove the item from the agenda using setstate to update
+              setState(() {
+                globals.agendaDisplay[globals.currentIndex].removeItem(index);
+              });
             },
-            child: Text('CLEAR'),
-            color: Colors.red,
-          ),
-          Text('Edit Description'),
-          TextFormField(
-            //has the field initially filled out with the previous description
-            //if it exists
-            controller: description,
-            initialValue: item.getDescription(),
-            //calls the function that sets the description
-            onChanged: setDescription,
-          ),
-          //clear button for the field (Currently doesnt work)
-          RaisedButton(
-            onPressed: () {
-              description.clear();
-            },
-            child: Text('CLEAR'),
-            color: Colors.red,
-          ),
-          /*FlatButton(
-            onPressed: () {
-              int index = globals.agendaDisplay[globals.currentIndex]
-                  .getItemIndex(item);
-              globals.agendaDisplay[globals.currentIndex]
-                  .setName(index, tempName);
-              globals.agendaDisplay[globals.currentIndex]
-                  .setDescription(index, tempDescription);
-            },
-            color: Colors.green,
-            child: Text('Save Changes'),
-          )*/
+            icon: Icon(Icons.delete),
+            padding: const EdgeInsets.fromLTRB(350, 0, 0, 0),
+          )
         ],
       ),
     );
   }
 
   Widget build(BuildContext context) {
+    //this pulls up the correct agenda using the currentIndex set in the display page
+    List<Item> itemlist =
+        globals.agendaDisplay[globals.currentIndex].getItemList();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: globals.colorSelected.getColor(),
@@ -79,15 +54,55 @@ class EditingScreenState extends State<EditingScreen> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: globals.agendaDisplay[globals.currentIndex]
-              .getItemList()
-              .map((item) => itemTemplate(item))
-              .toList(),
-        ),
-      ),
+          child: Column(
+        children: [
+          Column(
+              //this first column is the list of items in the agenda being displayed
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: itemlist.map((item) => itemTemplate(item)).toList()),
+          //container that contains the fields to add items to the agenda
+          //in the future This will be a pop up that only appears when the
+          //add item button is pressed
+          Container(
+            child: Column(
+              children: [
+                Text('New Item Name'),
+                TextField(
+                  controller: name,
+                  onChanged: setName,
+                ),
+                Text('New Item Description'),
+                TextField(
+                  controller: description,
+                  onChanged: setDescription,
+                ),
+                FlatButton(
+                  child: Text("Add"),
+                  color: Colors.green,
+                  onPressed: () {
+                    //actually adds the item and uses setstate so the screen
+                    //updates properly
+                    setState(() {
+                      globals.agendaDisplay[globals.currentIndex]
+                          .addItem(tempName, tempDescription, false, false);
+                      name.clear();
+                      description.clear();
+                      //clears the text editors after an item is added
+                    });
+                  },
+                )
+              ],
+            ),
+          ),
+
+          //not implemented yet
+          FlatButton(
+            child: Text('Add Another Item'),
+            onPressed: null,
+          )
+        ],
+      )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, '/displayScreen');
@@ -99,7 +114,7 @@ class EditingScreenState extends State<EditingScreen> {
   }
 
   //These are the void methods that actually change the variables using the
-  //values that will be passed in by the textFormFields
+  //values that will be passed in by the textFields
   void setName(String s) {
     setState(() {
       tempName = s;
