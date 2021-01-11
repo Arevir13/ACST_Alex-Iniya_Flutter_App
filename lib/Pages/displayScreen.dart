@@ -42,18 +42,36 @@ class DisplayScreenState extends State<DisplayScreen> {
           ),
           SizedBox(
               height: 30,
-              child: FlatButton(
-                //make sure to use a flatbutton or iconbutton when making
-                //multiple buttons on the same screen because floatingactionbuttons
-                //tend to freak out when there are multiple
-                onPressed: () {
-                  //sets the current index before sending the user to the screen
-                  //this allows the edit screen to use the currentIndex
-                  //to pull up the correct agenda
-                  globals.currentIndex = agenda.getDisplayIndex();
-                  Navigator.pushNamed(context, '/editingScreen');
-                },
-                child: Text('Edit'),
+              child: Row(
+                children: [
+                  FlatButton(
+                    //make sure to use a flatbutton or iconbutton when making
+                    //multiple buttons on the same screen because floatingactionbuttons
+                    //tend to freak out when there are multiple
+                    onPressed: () {
+                      //sets the current index before sending the user to the screen
+                      //this allows the edit screen to use the currentIndex
+                      //to pull up the correct agenda
+                      globals.currentIndex = agenda.getDisplayIndex();
+                      Navigator.pushNamed(context, '/editingScreen');
+                    },
+                    child: Text('Edit'),
+                    padding: const EdgeInsets.fromLTRB(190, 0, 0, 0),
+                  ),
+                  //iconbutton to remove agendas from the list
+                  IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      //whenver changing something that affects the display of
+                      //the screen make sure to use setState so the builder can
+                      //update properly
+                      setState(() {
+                        globals.agendaDisplay.remove(agenda);
+                      });
+                    },
+                    padding: const EdgeInsets.fromLTRB(160, 0, 0, 0),
+                  )
+                ],
               )),
         ],
       ),
