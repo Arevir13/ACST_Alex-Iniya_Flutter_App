@@ -17,6 +17,14 @@ class Agenda {
     displayIndex = i;
   }
 
+  int getLength() {
+    int index = 0;
+    for (Item item in agenda) {
+      index++;
+    }
+    return index;
+  }
+
   int getDisplayIndex() {
     return displayIndex;
   }

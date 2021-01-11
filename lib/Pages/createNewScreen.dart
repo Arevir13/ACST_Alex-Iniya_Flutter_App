@@ -122,6 +122,12 @@ class CreateNewScreenState extends State<CreateNewScreen> {
           )),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          //this first if statement prevents the user from leaving a field
+          //incomplete, this is necessary because submitting with empty fields
+          //causes a crash
+          if (getT() == null || getDesc() == null || getN() == null) {
+            return null;
+          }
           agenda = Agenda();
           agenda.setTitle(getT());
           agenda.addItem(getN(), getDesc(), false, false);
