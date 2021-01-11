@@ -26,6 +26,38 @@ class EditingScreenState extends State<EditingScreen> {
     return Card(
       child: Column(
         children: [
+          IconButton(
+              icon: Icon(Icons.edit),
+              color: Colors.orange,
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Dialog(
+                        insetPadding:
+                            const EdgeInsets.fromLTRB(50, 200, 50, 200),
+                        child: Card(
+                          child: Form(
+                              child: Column(
+                            children: [
+                              Text('Edit Item'),
+                              TextFormField(
+                                decoration:
+                                    InputDecoration(labelText: 'Item Name'),
+                              ),
+                              TextFormField(
+                                decoration: InputDecoration(
+                                    labelText: 'Item Description'),
+                              ),
+                              RaisedButton(
+                                  child: Text('Save Changes'), onPressed: null)
+                            ],
+                          )),
+                        ),
+                      );
+                    });
+              },
+              padding: const EdgeInsets.fromLTRB(350, 0, 0, 0)),
           Text('Name: ' + item.getName()),
           Text('Description: ' + item.getDescription()),
           IconButton(
