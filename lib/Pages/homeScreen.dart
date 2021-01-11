@@ -20,6 +20,7 @@ class HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.purple,
           title: Text('Welcome to the Agenda App'),
           centerTitle: true,
+          automaticallyImplyLeading: false,
           actions: <Widget>[
             //creates settings button on app bar
             IconButton(
