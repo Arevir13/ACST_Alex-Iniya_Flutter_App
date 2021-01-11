@@ -15,6 +15,12 @@ class _SettingsState extends State<Settings> {
         backgroundColor: globals.colorSelected.getColor(),
         title: Text('Settings'),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, '/homeScreen');
+          },
+        ),
       ),
       body: Row(
         children: <Widget>[

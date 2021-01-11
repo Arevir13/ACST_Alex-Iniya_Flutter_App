@@ -59,6 +59,12 @@ class ViewUnfinishedState extends State<ViewUnfinished> {
         backgroundColor: globals.colorSelected.getColor(),
         title: Text('All unfinished Items'),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, '/homeScreen');
+          },
+        ),
       ),
       body: SingleChildScrollView(
         //this body type is used to allow the screen to become scrollable

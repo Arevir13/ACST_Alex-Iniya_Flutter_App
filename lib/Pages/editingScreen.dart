@@ -77,6 +77,12 @@ class EditingScreenState extends State<EditingScreen> {
         backgroundColor: globals.colorSelected.getColor(),
         title: Text(globals.agendaDisplay[globals.currentIndex].getTitle()),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, '/displayScreen');
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

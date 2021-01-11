@@ -35,6 +35,12 @@ class CreateNewScreenState extends State<CreateNewScreen> {
         backgroundColor: globals.colorSelected.getColor(),
         title: Text('Create new'),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, '/homeScreen');
+          },
+        ),
       ),
       body: Container(
           alignment: Alignment.center,

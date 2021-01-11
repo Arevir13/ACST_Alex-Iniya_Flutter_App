@@ -13,6 +13,12 @@ class CalendarScreenState extends State<CalendarScreen> {
         backgroundColor: globals.colorSelected.getColor(),
         title: Text('Calendar'),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, '/homeScreen');
+          },
+        ),
       ),
       body: Center(
         child: Text('W.I.P'),
