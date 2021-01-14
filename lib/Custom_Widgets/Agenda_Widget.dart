@@ -94,6 +94,8 @@ class Agenda {
     return s;
   }
 
+//method to make a string of only unfinished items in Agenda
+//called in viewUnfinished
   String unfinishedString() {
     String s = '';
     for (int i = 0; i < agenda.length; i++) {

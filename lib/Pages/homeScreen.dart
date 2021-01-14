@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
 
 //make sure to import this
 class HomeScreen extends StatefulWidget {
@@ -17,12 +18,12 @@ class HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           //appbar widget is premade and has useful features
           //like a back button to link widgets
-          backgroundColor: Colors.purple,
+          backgroundColor: globals.colorSelected.getColor(),
           title: Text('Welcome to the Agenda App'),
           centerTitle: true,
           automaticallyImplyLeading: false,
           actions: <Widget>[
-            //creates settings button on app bar
+            //creates settings button on top right of app bar
             IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/settings');
@@ -32,6 +33,7 @@ class HomeScreenState extends State<HomeScreen> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
+          //create new button ("+" at the bottom of the screen)
           onPressed: () {
             Navigator.pushNamed(context, '/createNewScreen');
           },
@@ -48,6 +50,7 @@ class HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             //children of type widget
             FlatButton.icon(
+              //button to bring to Calendar Screen
               onPressed: () {
                 Navigator.pushNamed(context, '/calendarScreen');
               },
@@ -56,6 +59,7 @@ class HomeScreenState extends State<HomeScreen> {
               highlightColor: Colors.blue,
             ),
             FlatButton.icon(
+              //button to bring to viewUnfinished Screen
               onPressed: () {
                 Navigator.pushNamed(context, '/viewUnfinished');
               },

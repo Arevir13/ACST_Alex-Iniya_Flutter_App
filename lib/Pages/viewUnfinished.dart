@@ -29,6 +29,7 @@ class ViewUnfinishedState extends State<ViewUnfinished> {
           ),
           Text(
             agenda.unfinishedString(),
+            //calls method to only pass in unfinished items
             //again, these values will be passed in, this is just the toString
             //for all values except the title
             style: TextStyle(
@@ -55,9 +56,15 @@ class ViewUnfinishedState extends State<ViewUnfinished> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple,
+        backgroundColor: globals.colorSelected.getColor(),
         title: Text('All unfinished Items'),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, '/homeScreen');
+          },
+        ),
       ),
       body: SingleChildScrollView(
         //this body type is used to allow the screen to become scrollable

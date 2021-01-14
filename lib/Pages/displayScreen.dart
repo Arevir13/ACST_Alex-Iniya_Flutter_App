@@ -81,7 +81,7 @@ class DisplayScreenState extends State<DisplayScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple,
+        backgroundColor: globals.colorSelected.getColor(),
         title: Text('Agenda List'),
         centerTitle: true,
         leading: IconButton(
