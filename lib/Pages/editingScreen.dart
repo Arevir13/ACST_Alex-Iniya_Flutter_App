@@ -143,7 +143,7 @@ class EditingScreenState extends State<EditingScreen> {
       )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/displayScreen');
+          Navigator.pushReplacementNamed(context, '/displayScreen');
         },
         child: Icon(Icons.view_agenda),
         backgroundColor: Colors.purple,

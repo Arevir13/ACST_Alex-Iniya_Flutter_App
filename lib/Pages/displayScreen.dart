@@ -53,7 +53,7 @@ class DisplayScreenState extends State<DisplayScreen> {
                       //this allows the edit screen to use the currentIndex
                       //to pull up the correct agenda
                       globals.currentIndex = agenda.getDisplayIndex();
-                      Navigator.pushNamed(context, '/editingScreen');
+                      Navigator.pushReplacementNamed(context, '/editingScreen');
                     },
                     child: Text('Edit'),
                     padding: const EdgeInsets.fromLTRB(190, 0, 0, 0),
@@ -87,7 +87,7 @@ class DisplayScreenState extends State<DisplayScreen> {
         leading: IconButton(
           icon: Icon(Icons.home),
           onPressed: () {
-            Navigator.pushNamed(context, '/homeScreen');
+            Navigator.popAndPushNamed(context, '/homeScreen');
           },
         ),
       ),
