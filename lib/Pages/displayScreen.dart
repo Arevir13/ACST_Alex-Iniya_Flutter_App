@@ -67,6 +67,9 @@ class DisplayScreenState extends State<DisplayScreen> {
                       //update properly
                       setState(() {
                         globals.agendaDisplay.remove(agenda);
+                        if (globals.agendaDisplay.length == 0) {
+                          globals.agendaDisplayIndex = null;
+                        }
                       });
                     },
                     padding: const EdgeInsets.fromLTRB(160, 0, 0, 0),

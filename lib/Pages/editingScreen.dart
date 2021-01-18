@@ -34,25 +34,24 @@ class EditingScreenState extends State<EditingScreen> {
                     context: context,
                     builder: (BuildContext context) {
                       return Dialog(
-                        insetPadding:
-                            const EdgeInsets.fromLTRB(50, 200, 50, 200),
-                        child: Card(
-                          child: Form(
-                              child: Column(
-                            children: [
-                              Text('Edit Item'),
-                              TextFormField(
-                                decoration:
-                                    InputDecoration(labelText: 'Item Name'),
-                              ),
-                              TextFormField(
-                                decoration: InputDecoration(
-                                    labelText: 'Item Description'),
-                              ),
-                              RaisedButton(
-                                  child: Text('Save Changes'), onPressed: null)
-                            ],
-                          )),
+                        insetPadding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text('Edit Item'),
+                            TextFormField(
+                              decoration:
+                                  InputDecoration(labelText: 'Item Name'),
+                            ),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                  labelText: 'Item Description'),
+                            ),
+                            RaisedButton(
+                              onPressed: null,
+                              child: Text('Save Changes'),
+                            )
+                          ],
                         ),
                       );
                     });
@@ -99,45 +98,55 @@ class EditingScreenState extends State<EditingScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: itemlist.map((item) => itemTemplate(item)).toList()),
-          //container that contains the fields to add items to the agenda
-          //in the future This will be a pop up that only appears when the
-          //add item button is pressed
-          Container(
-            child: Column(
-              children: [
-                Text('New Item Name'),
-                TextField(
-                  controller: name,
-                  onChanged: setName,
-                ),
-                Text('New Item Description'),
-                TextField(
-                  controller: description,
-                  onChanged: setDescription,
-                ),
-                FlatButton(
-                  child: Text("Add"),
-                  color: Colors.green,
-                  onPressed: () {
-                    //actually adds the item and uses setstate so the screen
-                    //updates properly
-                    setState(() {
-                      globals.agendaDisplay[globals.currentIndex]
-                          .addItem(tempName, tempDescription, false, false);
-                      name.clear();
-                      description.clear();
-                      //clears the text editors after an item is added
-                    });
-                  },
-                )
-              ],
-            ),
-          ),
 
           //not implemented yet
-          FlatButton(
-            child: Text('Add Another Item'),
-            onPressed: null,
+          RaisedButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      //container that contains the fields to add items to the agenda
+                      //this only appears when the add button is pressed
+                      child: Container(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text('New Item Name'),
+                            TextField(
+                              controller: name,
+                              onChanged: setName,
+                            ),
+                            Text('New Item Description'),
+                            TextField(
+                              controller: description,
+                              onChanged: setDescription,
+                            ),
+                            FlatButton(
+                              child: Text("Add"),
+                              color: Colors.green,
+                              onPressed: () {
+                                //actually adds the item and uses setstate so the screen
+                                //updates properly
+                                setState(() {
+                                  globals.agendaDisplay[globals.currentIndex]
+                                      .addItem(tempName, tempDescription, false,
+                                          false);
+                                  name.clear();
+                                  description.clear();
+                                  //clears the text editors after an item is added
+                                  Navigator.of(context).pop();
+                                });
+                              },
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  });
+            },
+            child: Icon(Icons.add),
+            color: Colors.green,
           )
         ],
       )),
