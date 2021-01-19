@@ -12,6 +12,8 @@ class EditingScreenState extends State<EditingScreen> {
   String tempDescription;
   TextEditingController name = TextEditingController();
   TextEditingController description = TextEditingController();
+  TextEditingController _editName = TextEditingController();
+  TextEditingController _editDesc = TextEditingController();
 
   @override
   void dispose() {
@@ -23,13 +25,16 @@ class EditingScreenState extends State<EditingScreen> {
   //this simple itemTemplate just displays the items information
   Widget itemTemplate(Item item) {
     int index = globals.agendaDisplay[globals.currentIndex].getItemIndex(item);
+    //this is the card that has all the other info on it including the buttons
     return Card(
       child: Column(
         children: [
+          //This is the edit button
           IconButton(
               icon: Icon(Icons.edit),
               color: Colors.orange,
               onPressed: () {
+                //brings up a pop up screen for making changes to an item
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -40,15 +45,41 @@ class EditingScreenState extends State<EditingScreen> {
                           children: [
                             Text('Edit Item'),
                             TextFormField(
+                              controller: _editName,
+                              onChanged: setName,
                               decoration:
                                   InputDecoration(labelText: 'Item Name'),
                             ),
                             TextFormField(
+                              controller: _editDesc,
+                              onChanged: setDescription,
                               decoration: InputDecoration(
                                   labelText: 'Item Description'),
                             ),
+
+                            //Button that bring up an edit menu where user can input
+                            //new name and description
                             RaisedButton(
-                              onPressed: null,
+                              color: Colors.green,
+                              onPressed: () {
+                                //This setState changes the global variable for agendadisplay
+                                //to have the new values and clears the controllers
+                                //also pops the menu
+                                setState(() {
+                                  if (_editName != null) {
+                                    globals.agendaDisplay[globals.currentIndex]
+                                        .setName(index, tempName);
+                                  }
+                                  if (_editDesc != null) {
+                                    globals.agendaDisplay[globals.currentIndex]
+                                        .setDescription(index, tempDescription);
+                                  }
+
+                                  _editName.clear();
+                                  _editDesc.clear();
+                                  Navigator.of(context).pop();
+                                });
+                              },
                               child: Text('Save Changes'),
                             )
                           ],
@@ -57,8 +88,12 @@ class EditingScreenState extends State<EditingScreen> {
                     });
               },
               padding: const EdgeInsets.fromLTRB(350, 0, 0, 0)),
+
+          //These are the name and description of the item that will appear on screen
           Text('Name: ' + item.getName()),
           Text('Description: ' + item.getDescription()),
+
+          //This is the delete button to remove an item from the agenda
           IconButton(
             onPressed: () {
               //option to remove the item from the agenda using setstate to update
@@ -74,6 +109,7 @@ class EditingScreenState extends State<EditingScreen> {
     );
   }
 
+  //This is the formatting of the edit screen itself
   Widget build(BuildContext context) {
     //this pulls up the correct agenda using the currentIndex set in the display page
     List<Item> itemlist =
@@ -84,7 +120,7 @@ class EditingScreenState extends State<EditingScreen> {
         title: Text(globals.agendaDisplay[globals.currentIndex].getTitle()),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.view_agenda),
           onPressed: () {
             Navigator.popAndPushNamed(context, '/displayScreen');
           },
@@ -99,7 +135,8 @@ class EditingScreenState extends State<EditingScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: itemlist.map((item) => itemTemplate(item)).toList()),
 
-          //not implemented yet
+          //Add button to bring up menu to add a new item to the agenda that will
+          //Appear below the column of items regardless of its length
           RaisedButton(
             onPressed: () {
               showDialog(
@@ -135,6 +172,8 @@ class EditingScreenState extends State<EditingScreen> {
                                   name.clear();
                                   description.clear();
                                   //clears the text editors after an item is added
+
+                                  //pops the dialog when finished
                                   Navigator.of(context).pop();
                                 });
                               },
@@ -150,13 +189,9 @@ class EditingScreenState extends State<EditingScreen> {
           )
         ],
       )),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/displayScreen');
-        },
-        child: Icon(Icons.view_agenda),
-        backgroundColor: Colors.purple,
-      ),
+
+      //NOTE: Dont have multiple floatingActionButtons on the screen at once as
+      //it will cause errors
     );
   }
 
