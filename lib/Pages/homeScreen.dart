@@ -41,7 +41,7 @@ class HomeScreenState extends State<HomeScreen> {
               style: TextStyle(
                 fontSize: 30.0,
               )),
-          backgroundColor: Colors.purple[500],
+          backgroundColor: globals.colorSelected.getColor(),
         ),
         body: Center(
             child: Column(

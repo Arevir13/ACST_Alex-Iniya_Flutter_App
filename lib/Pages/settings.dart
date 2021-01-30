@@ -23,7 +23,7 @@ class _SettingsState extends State<Settings> {
         ),
       ),
       body: Center(
-        child: Row(
+        child: Column(
           children: <Widget>[
             DropdownButton<ColorWidget>(
                 hint: Text(
