@@ -94,15 +94,45 @@ class EditingScreenState extends State<EditingScreen> {
           Text('Description: ' + item.getDescription()),
 
           //This is the delete button to remove an item from the agenda
-          IconButton(
-            onPressed: () {
-              //option to remove the item from the agenda using setstate to update
-              setState(() {
-                globals.agendaDisplay[globals.currentIndex].removeItem(index);
-              });
-            },
-            icon: Icon(Icons.delete),
-            padding: const EdgeInsets.fromLTRB(350, 0, 0, 0),
+          Row(
+            children: [
+              //Switch for Checked boolean
+              Text('Checked'),
+              Switch(
+                value: item.getChecked(),
+                onChanged: (bool newValue) {
+                  setState(() {
+                    item.setChecked(newValue);
+                  });
+                },
+                activeColor: globals.colorSelected.getColor(),
+              ),
+              Container(
+                padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
+              ),
+              //Switch for Repeat boolean
+              Text('Repeat'),
+              Switch(
+                value: item.getRepeat(),
+                onChanged: (bool newValue) {
+                  setState(() {
+                    item.setRepeat(newValue);
+                  });
+                },
+                activeColor: globals.colorSelected.getColor(),
+              ),
+              IconButton(
+                onPressed: () {
+                  //option to remove the item from the agenda using setstate to update
+                  setState(() {
+                    globals.agendaDisplay[globals.currentIndex]
+                        .removeItem(index);
+                  });
+                },
+                icon: Icon(Icons.delete),
+                padding: const EdgeInsets.fromLTRB(100, 0, 0, 0),
+              )
+            ],
           )
         ],
       ),
