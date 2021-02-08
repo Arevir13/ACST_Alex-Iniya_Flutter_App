@@ -26,7 +26,7 @@ class HomeScreenState extends State<HomeScreen> {
             //creates settings button on top right of app bar
             IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/settings');
+                Navigator.pushReplacementNamed(context, '/settings');
               },
               icon: Icon(Icons.settings),
             ),
@@ -35,7 +35,7 @@ class HomeScreenState extends State<HomeScreen> {
         floatingActionButton: FloatingActionButton(
           //create new button ("+" at the bottom of the screen)
           onPressed: () {
-            Navigator.pushNamed(context, '/createNewScreen');
+            Navigator.pushReplacementNamed(context, '/createNewScreen');
           },
           child: Text('+',
               style: TextStyle(
@@ -52,7 +52,7 @@ class HomeScreenState extends State<HomeScreen> {
             FlatButton.icon(
               //button to bring to Calendar Screen
               onPressed: () {
-                Navigator.pushNamed(context, '/calendarScreen');
+                Navigator.pushReplacementNamed(context, '/calendarScreen');
               },
               icon: Icon(Icons.calendar_today),
               label: Text('View Calendar'),
@@ -61,7 +61,7 @@ class HomeScreenState extends State<HomeScreen> {
             FlatButton.icon(
               //button to bring to viewUnfinished Screen
               onPressed: () {
-                Navigator.pushNamed(context, '/viewUnfinished');
+                Navigator.pushReplacementNamed(context, '/viewUnfinished');
               },
               icon: Icon(Icons.assignment),
               label: Text('View Unfinished'),
@@ -69,7 +69,7 @@ class HomeScreenState extends State<HomeScreen> {
             ),
             FlatButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/displayScreen');
+                  Navigator.pushReplacementNamed(context, '/displayScreen');
                 },
                 icon: Icon(Icons.view_list),
                 label: Text('View Agendas'))

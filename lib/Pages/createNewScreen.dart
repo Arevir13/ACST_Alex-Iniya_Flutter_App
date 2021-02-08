@@ -140,7 +140,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
           agenda.setDisplayIndex(globals.agendaDisplayIndex);
           globals.agendaDisplay.add(agenda);
           globals.agendaDisplayIndex++;
-          Navigator.pushNamed(context, '/displayScreen');
+          Navigator.pushReplacementNamed(context, '/displayScreen');
           //the agenda variable that was created earlier is initialized
           //using the imported constructor from the agenda widget.dart file.
           //the agenda is then using the imported methods from agendawidget.dart
