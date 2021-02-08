@@ -28,3 +28,9 @@ int currentIndex;
 //bool whether user wants notifications
 //starting value is false (no notifications)
 bool notifications = false;
+
+//font family for throughout the app
+String fontFamily = 'Montserrat';
+//specific font weight/style
+//access "light" with w300, "regular" with w400, and "bold" with w500
+FontWeight weight = FontWeight.w400;
