@@ -56,7 +56,7 @@ class HomeScreenState extends State<HomeScreen> {
               },
               icon: Icon(Icons.calendar_today),
               label: Text('View Calendar'),
-              highlightColor: Colors.blue,
+              highlightColor: globals.colorSelected.getColor(),
             ),
             FlatButton.icon(
               //button to bring to viewUnfinished Screen
@@ -65,7 +65,7 @@ class HomeScreenState extends State<HomeScreen> {
               },
               icon: Icon(Icons.assignment),
               label: Text('View Unfinished'),
-              highlightColor: Colors.blue,
+              highlightColor: globals.colorSelected.getColor(),
             ),
             FlatButton.icon(
                 onPressed: () {
