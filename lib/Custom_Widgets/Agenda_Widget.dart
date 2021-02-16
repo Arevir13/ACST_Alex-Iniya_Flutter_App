@@ -78,6 +78,14 @@ class Agenda {
     return agenda[index].getRepeat();
   }
 
+  DateTime getDeadline(int index) {
+    return agenda[index].getDeadline();
+  }
+
+  void setDeadline(int index, DateTime date) {
+    agenda[index].setDeadline(date);
+  }
+
   void setTitle(String t) {
     title = t;
   }
@@ -89,7 +97,7 @@ class Agenda {
   String itemString() {
     String s = '';
     for (Item x in agenda) {
-      s += (x.toString() + "\n");
+      s += (x.toString() + "\n\n");
     }
     return s;
   }
@@ -118,13 +126,20 @@ class Item {
   String description;
   bool checked;
   bool repeat;
+  String deadline;
 
   Item(String n, String d, bool c, bool r) {
     name = n;
     description = d;
     checked = c;
     repeat = r;
+    deadline = '';
   }
+
+  void setDeadline(DateTime date) {
+    deadline = date.month.toString() + '/' + date.day.toString();
+  }
+
   void setName(String newName) {
     name = newName;
   }
@@ -139,6 +154,10 @@ class Item {
 
   void setRepeat(bool newRep) {
     repeat = newRep;
+  }
+
+  String getDeadline() {
+    return deadline;
   }
 
   String getName() {
@@ -158,14 +177,50 @@ class Item {
   }
 
   String toString() {
+    /* if (deadline == null) {
+      if (checked == false) {
+        if (repeat == true) {
+          return name + ': ' + description + '\n Unchecked, Repeat ON';
+        } else
+          return name + ': ' + description + '\n Unchecked, Repeat OFF';
+      } else if (checked && repeat == true) {
+        return name + ': ' + description + '\n Checked, Repeat ON';
+      } else
+        return name + ': ' + description + '\n Checked, Repeat OFF';
+    } else {*/
     if (checked == false) {
       if (repeat == true) {
-        return name + ': ' + description + ', Unchecked, Repeat ON';
-      }
-      return name + ': ' + description + ', Unchecked, Repeat OFF';
+        return name +
+            ': ' +
+            description +
+            '\n Unchecked, Repeat ON' +
+            '\n' +
+            'Due: ' +
+            deadline;
+      } else
+        return name +
+            ': ' +
+            description +
+            '\n Unchecked, Repeat OFF' +
+            '\n' +
+            'Due: ' +
+            deadline;
     } else if (checked && repeat == true) {
-      return name + ': ' + description + ', Checked, Repeat ON';
-    }
-    return name + ': ' + description + ', Checked, Repeat OFF';
+      return name +
+          ': ' +
+          description +
+          '\n Checked, Repeat ON' +
+          '\n' +
+          'Due: ' +
+          deadline;
+    } else
+      return name +
+          ': ' +
+          description +
+          '\n Checked, Repeat OFF' +
+          '\n' +
+          'Due: ' +
+          deadline;
+    //}
   }
 }

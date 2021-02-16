@@ -14,6 +14,7 @@ class EditingScreenState extends State<EditingScreen> {
   TextEditingController description = TextEditingController();
   TextEditingController _editName = TextEditingController();
   TextEditingController _editDesc = TextEditingController();
+  DateTime selectedDate = DateTime.now();
 
   @override
   void dispose() {
@@ -107,9 +108,7 @@ class EditingScreenState extends State<EditingScreen> {
                 },
                 activeColor: globals.colorSelected.getColor(),
               ),
-              Container(
-                padding: const EdgeInsets.fromLTRB(50, 0, 0, 0),
-              ),
+
               //Switch for Repeat boolean
               Text('Repeat'),
               Switch(
@@ -121,6 +120,20 @@ class EditingScreenState extends State<EditingScreen> {
                 },
                 activeColor: globals.colorSelected.getColor(),
               ),
+              //container for formatting
+              Container(
+                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+              ),
+              //This calls the calendar function to pop up on the screen
+              RaisedButton(
+                onPressed: () => _selectDate(context),
+                child: Text(
+                  'Select date',
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                ),
+                color: globals.colorSelected.getColor(),
+              ),
               IconButton(
                 onPressed: () {
                   //option to remove the item from the agenda using setstate to update
@@ -130,7 +143,7 @@ class EditingScreenState extends State<EditingScreen> {
                   });
                 },
                 icon: Icon(Icons.delete),
-                padding: const EdgeInsets.fromLTRB(100, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
               )
             ],
           )
@@ -244,5 +257,19 @@ class EditingScreenState extends State<EditingScreen> {
     setState(() {
       tempDescription = s;
     });
+  }
+
+  //This brings up the calendar to select a date for the item
+  _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
   }
 }
