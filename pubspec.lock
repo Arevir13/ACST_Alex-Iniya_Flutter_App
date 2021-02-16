@@ -14,7 +14,6 @@ packages:
       name: boolean_selector
       url: "https://pub.dartlang.org"
     source: hosted
-
     version: "2.0.0"
   calendar_timeline:
     dependency: "direct main"
@@ -102,7 +101,6 @@ packages:
       name: path
       url: "https://pub.dartlang.org"
     source: hosted
-
     version: "1.7.0"
   scrollable_positioned_list:
     dependency: transitive
@@ -111,7 +109,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.9"
-
   sky_engine:
     dependency: transitive
     description: flutter
