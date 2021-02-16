@@ -24,3 +24,7 @@ int agendaDisplayIndex;
 //this current index will be a malleable variable that will change depending
 //on the agenda selected and will serve to point the editing screen to the correct index
 int currentIndex;
+
+//bool whether user wants notifications
+//starting value is false (no notifications)
+bool notifications = false;
