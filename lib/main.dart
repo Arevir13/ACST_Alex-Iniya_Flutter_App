@@ -3,6 +3,7 @@ import 'package:practice_app/Pages/calendarScreen.dart';
 import 'package:practice_app/Pages/createNewScreen.dart';
 import 'package:practice_app/Pages/homeScreen.dart';
 import 'package:practice_app/Pages/viewUnfinished.dart';
+import 'package:practice_app/Pages/wrapper.dart';
 
 import 'package:practice_app/pages/settings.dart';
 import 'package:practice_app/Pages/displayScreen.dart';
@@ -12,7 +13,7 @@ import 'package:practice_app/Pages/editingScreen.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/homeScreen',
+    initialRoute: '/wrapper',
     //sets the initial route that the app goes to when it opens
     routes: {
       '/homeScreen': (context) => HomeScreen(),
@@ -22,6 +23,7 @@ void main() {
       '/settings': (context) => Settings(),
       '/calendarScreen': (context) => CalendarScreen(),
       '/editingScreen': (context) => EditingScreen(),
+      '/wrapper': (context) => Wrapper(),
       //sets the '/routename' to point to the widgets in the other dart
       //files
     },
