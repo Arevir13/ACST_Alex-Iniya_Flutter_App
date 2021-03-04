@@ -19,7 +19,13 @@ class HomeScreenState extends State<HomeScreen> {
           //appbar widget is premade and has useful features
           //like a back button to link widgets
           backgroundColor: globals.colorSelected.getColor(),
-          title: Text('Welcome to the Agenda App'),
+          title: Text(
+            'Welcome to the Agenda App',
+            style: TextStyle(
+              fontFamily: globals.fontFamily,
+              fontWeight: globals.weight,
+            ),
+          ),
           centerTitle: true,
           automaticallyImplyLeading: false,
           actions: <Widget>[
@@ -55,8 +61,16 @@ class HomeScreenState extends State<HomeScreen> {
                 Navigator.pushReplacementNamed(context, '/calendarScreen');
               },
               icon: Icon(Icons.calendar_today),
-              label: Text('View Calendar'),
-              highlightColor: globals.colorSelected.getColor(),
+              //height: 60.0, //height of button
+              label: Text(
+                'View Calendar',
+                style: TextStyle(
+                  fontSize: 25.0,
+                  fontFamily: globals.fontFamily,
+                  fontWeight: globals.weight,
+                ),
+              ),
+              highlightColor: Colors.blue,
             ),
             FlatButton.icon(
               //button to bring to viewUnfinished Screen
@@ -64,15 +78,33 @@ class HomeScreenState extends State<HomeScreen> {
                 Navigator.pushReplacementNamed(context, '/viewUnfinished');
               },
               icon: Icon(Icons.assignment),
-              label: Text('View Unfinished'),
-              highlightColor: globals.colorSelected.getColor(),
+              //height: 60.0, //height of button
+              label: Text(
+                'View Unfinished',
+                style: TextStyle(
+                  fontSize: 25.0,
+                  fontFamily: globals.fontFamily,
+                  fontWeight: globals.weight,
+                ),
+              ),
+              highlightColor: Colors.blue,
             ),
             FlatButton.icon(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/displayScreen');
-                },
-                icon: Icon(Icons.view_list),
-                label: Text('View Agendas'))
+              //button to bring to displayScreen
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/displayScreen');
+              },
+              icon: Icon(Icons.view_list),
+              //height: 60.0, //height of button
+              label: Text(
+                'View Agendas',
+                style: TextStyle(
+                  fontSize: 25.0,
+                  fontFamily: globals.fontFamily,
+                  fontWeight: globals.weight,
+                ),
+              ),
+            ),
           ],
         )));
   }

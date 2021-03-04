@@ -109,6 +109,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.9"
+<<<<<<< HEAD
   simple_gesture_detector:
     dependency: transitive
     description:
@@ -116,6 +117,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.6"
+=======
+>>>>>>> f3de53216059897bb13de3c2f79a9e0558033302
   sky_engine:
     dependency: transitive
     description: flutter
