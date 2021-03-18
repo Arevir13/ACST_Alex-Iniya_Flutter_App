@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
+import 'package:practice_app/services/auth.dart';
 
 //make sure to import this
 class HomeScreen extends StatefulWidget {
@@ -11,6 +12,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
+  final AuthService _auth = AuthService();
+  //gives us access to this instance of AuthService (to access pre made methods)
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,21 +23,29 @@ class HomeScreenState extends State<HomeScreen> {
           //like a back button to link widgets
           backgroundColor: globals.colorSelected.getColor(),
           title: Text(
-            'Welcome to the Agenda App',
+            'Welcome your Agenda',
             style: TextStyle(
               fontFamily: globals.fontFamily,
               fontWeight: globals.weight,
             ),
           ),
           centerTitle: true,
+          leading:
+              //creates settings button on top left of app bar
+              IconButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/settings');
+            },
+            icon: Icon(Icons.settings),
+          ),
           automaticallyImplyLeading: false,
           actions: <Widget>[
-            //creates settings button on top right of app bar
-            IconButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/settings');
+            FlatButton.icon(
+              icon: Icon(Icons.person),
+              label: Text('logout'),
+              onPressed: () async {
+                await _auth.signOut();
               },
-              icon: Icon(Icons.settings),
             ),
           ],
         ),
