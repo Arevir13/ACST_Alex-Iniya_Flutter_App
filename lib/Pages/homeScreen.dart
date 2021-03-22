@@ -72,7 +72,7 @@ class HomeScreenState extends State<HomeScreen> {
                 Navigator.pushReplacementNamed(context, '/calendarScreen');
               },
               icon: Icon(Icons.calendar_today),
-              height: 60.0, //height of button
+              //height: 60.0, //height of button
               label: Text(
                 'View Calendar',
                 style: TextStyle(
@@ -89,7 +89,7 @@ class HomeScreenState extends State<HomeScreen> {
                 Navigator.pushReplacementNamed(context, '/viewUnfinished');
               },
               icon: Icon(Icons.assignment),
-              height: 60.0, //height of button
+              //height: 60.0, //height of button
               label: Text(
                 'View Unfinished',
                 style: TextStyle(
@@ -106,7 +106,7 @@ class HomeScreenState extends State<HomeScreen> {
                 Navigator.pushReplacementNamed(context, '/displayScreen');
               },
               icon: Icon(Icons.view_list),
-              height: 60.0, //height of button
+              //height: 60.0, //height of button
               label: Text(
                 'View Agendas',
                 style: TextStyle(
