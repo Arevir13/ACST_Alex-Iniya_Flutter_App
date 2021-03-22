@@ -12,6 +12,8 @@ class CalendarScreenState extends State<CalendarScreen> {
   CalendarController _controller;
   Map<DateTime, List<dynamic>> _events;
   List<dynamic> _selectedEvents;
+
+  @override
   void initState() {
     super.initState();
     _controller = CalendarController();
@@ -19,6 +21,7 @@ class CalendarScreenState extends State<CalendarScreen> {
     _selectedEvents = [];
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -36,46 +39,60 @@ class CalendarScreenState extends State<CalendarScreen> {
         child: Column(
           children: [
             TableCalendar(
-              calendarController: _controller,
-              initialCalendarFormat: CalendarFormat.month,
+              events: _events,
+              initialCalendarFormat: CalendarFormat.week,
               calendarStyle: CalendarStyle(
+                  canEventMarkersOverflow: true,
                   todayColor: globals.colorSelected.getColor(),
-                  selectedColor: globals.colorSelected.getColor(),
+                  selectedColor: Theme.of(context).primaryColor,
                   todayStyle: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 22.0,
+                      fontSize: 18.0,
                       color: Colors.white)),
-              startingDayOfWeek: StartingDayOfWeek.sunday,
+              headerStyle: HeaderStyle(
+                centerHeaderTitle: true,
+                formatButtonDecoration: BoxDecoration(
+                  color: globals.colorSelected.getColor(),
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                formatButtonTextStyle: TextStyle(color: Colors.white),
+                formatButtonShowsNext: false,
+              ),
+              startingDayOfWeek: StartingDayOfWeek.monday,
+              onDaySelected: (date, events, holidays) {
+                setState(() {
+                  for (Agenda agenda in globals.agendaDisplay) {
+                    if (agenda.creationDate == date) {
+                      _events[date] = [agenda.itemString()];
+                    }
+                  }
+                  _selectedEvents = events;
+                });
+              },
               builders: CalendarBuilders(
                 selectedDayBuilder: (context, date, events) => Container(
-                    margin: const EdgeInsets.all(5.0),
+                    margin: const EdgeInsets.all(4.0),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(8.0)),
+                        borderRadius: BorderRadius.circular(10.0)),
                     child: Text(
                       date.day.toString(),
                       style: TextStyle(color: Colors.white),
                     )),
                 todayDayBuilder: (context, date, events) => Container(
-                    margin: const EdgeInsets.all(5.0),
+                    margin: const EdgeInsets.all(4.0),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                         color: globals.colorSelected.getColor(),
-                        borderRadius: BorderRadius.circular(8.0)),
+                        borderRadius: BorderRadius.circular(10.0)),
                     child: Text(
                       date.day.toString(),
                       style: TextStyle(color: Colors.white),
                     )),
               ),
-              onDaySelected: (date, events, holidays) {
-                setState(() {
-                  _selectedEvents = events;
-                });
-              },
+              calendarController: _controller,
             ),
-            //this is what actually displays the events below the calendar when
-            //a day is selected
             ..._selectedEvents.map((event) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -98,25 +115,6 @@ class CalendarScreenState extends State<CalendarScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: refreshCalendar,
-        child: Icon(Icons.refresh),
-      ),
     );
-  }
-
-  //This function is called when the calendar is created and it goes through the
-  //list of Agendas in the agendaDisplay List and adds their contents to their
-  //respective creation dates on the calendar.
-  void refreshCalendar() {
-    for (Agenda agenda in globals.agendaDisplay) {
-      setState(() {
-        if (_events[agenda.getCreationDate()] != null) {
-          _events[agenda.getCreationDate()].add([agenda.itemString()]);
-        } else {
-          _events[agenda.getCreationDate()] = [agenda.itemString()];
-        }
-      });
-    }
   }
 }
