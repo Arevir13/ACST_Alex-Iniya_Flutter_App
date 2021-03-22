@@ -60,8 +60,11 @@ class EditingScreenState extends State<EditingScreen> {
 
                             //Button that bring up an edit menu where user can input
                             //new name and description
-                            RaisedButton(
-                              color: Colors.green,
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.green)),
                               onPressed: () {
                                 //This setState changes the global variable for agendadisplay
                                 //to have the new values and clears the controllers
@@ -125,14 +128,16 @@ class EditingScreenState extends State<EditingScreen> {
                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
               ),
               //This calls the calendar function to pop up on the screen
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () => _selectDate(context),
                 child: Text(
                   'Select date',
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
-                color: globals.colorSelected.getColor(),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        globals.colorSelected.getColor())),
               ),
               IconButton(
                 onPressed: () {
@@ -180,7 +185,7 @@ class EditingScreenState extends State<EditingScreen> {
 
           //Add button to bring up menu to add a new item to the agenda that will
           //Appear below the column of items regardless of its length
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               showDialog(
                   context: context,
@@ -202,9 +207,12 @@ class EditingScreenState extends State<EditingScreen> {
                               controller: description,
                               onChanged: setDescription,
                             ),
-                            FlatButton(
+                            TextButton(
                               child: Text("Add"),
-                              color: Colors.green,
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.green)),
                               onPressed: () {
                                 //actually adds the item and uses setstate so the screen
                                 //updates properly
@@ -228,7 +236,9 @@ class EditingScreenState extends State<EditingScreen> {
                   });
             },
             child: Icon(Icons.add),
-            color: Colors.green,
+            style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.green)),
           )
         ],
       )),
