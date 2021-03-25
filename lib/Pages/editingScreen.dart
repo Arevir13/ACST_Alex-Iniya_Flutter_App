@@ -32,14 +32,6 @@ class EditingScreenState extends State<EditingScreen> {
         children: [
           Row(
             children: [
-              RaisedButton(
-                  child: Text('Save Changes'),
-                  onPressed: () {
-                    setState(() {
-                      globals.agendaDisplay[index]
-                          .setDeadline(index, selectedDate);
-                    });
-                  }),
               //This is the edit button
               IconButton(
                   icon: Icon(Icons.edit),
@@ -142,9 +134,23 @@ class EditingScreenState extends State<EditingScreen> {
               ),
               //This calls the calendar function to pop up on the screen
               RaisedButton(
-                onPressed: () => _selectDate(context),
+                onPressed: () {
+                  showDatePicker(
+                          context: context,
+                          initialDate: selectedDate == null
+                              ? DateTime.now()
+                              : selectedDate,
+                          firstDate: DateTime(2020),
+                          lastDate: DateTime(2030))
+                      .then((date) {
+                    setState(() {
+                      selectedDate = date;
+                      globals.agendaDisplay[index].setDeadline(index, date);
+                    });
+                  });
+                },
                 child: Text(
-                  'Select date',
+                  'Due Date',
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
@@ -273,19 +279,5 @@ class EditingScreenState extends State<EditingScreen> {
     setState(() {
       tempDescription = s;
     });
-  }
-
-  //This brings up the calendar to select a date for the item
-  _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025),
-    );
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-      });
   }
 }

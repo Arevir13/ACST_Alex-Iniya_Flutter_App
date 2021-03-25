@@ -6,15 +6,21 @@ class Agenda {
   List agenda;
   String title;
   int displayIndex;
+  DateTime creationDate;
   Agenda() {
     agenda = <Item>[];
     title = '';
     displayIndex = null;
+    creationDate = DateTime.now();
   }
 //displayIndex methods will be used in the editing screen so it knows
 //what index of the global agenda list to display
   void setDisplayIndex(int i) {
     displayIndex = i;
+  }
+
+  DateTime getCreationDate() {
+    return creationDate;
   }
 
   int getLength() {
@@ -78,7 +84,7 @@ class Agenda {
     return agenda[index].getRepeat();
   }
 
-  DateTime getDeadline(int index) {
+  String getDeadline(int index) {
     return agenda[index].getDeadline();
   }
 
