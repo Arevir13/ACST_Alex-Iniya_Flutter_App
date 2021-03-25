@@ -33,7 +33,8 @@ class DisplayScreenState extends State<DisplayScreen> {
           ),
           Text(
             agenda.itemString(),
-            //this will show all the items in the agenda
+            //again, these values will be passed in, this is just the toString
+            //for all values except the title
             style: TextStyle(
               fontSize: 11.0,
               color: Colors.blue,
@@ -43,9 +44,6 @@ class DisplayScreenState extends State<DisplayScreen> {
               height: 30,
               child: Row(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(160, 0, 0, 0),
-                  ),
                   FlatButton(
                     //make sure to use a flatbutton or iconbutton when making
                     //multiple buttons on the same screen because floatingactionbuttons
@@ -58,9 +56,7 @@ class DisplayScreenState extends State<DisplayScreen> {
                       Navigator.pushReplacementNamed(context, '/editingScreen');
                     },
                     child: Text('Edit'),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(100, 0, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(190, 0, 0, 0),
                   ),
                   //iconbutton to remove agendas from the list
                   IconButton(
@@ -76,6 +72,7 @@ class DisplayScreenState extends State<DisplayScreen> {
                         }
                       });
                     },
+                    padding: const EdgeInsets.fromLTRB(160, 0, 0, 0),
                   )
                 ],
               )),
