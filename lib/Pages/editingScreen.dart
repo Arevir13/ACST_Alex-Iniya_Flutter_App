@@ -30,68 +30,84 @@ class EditingScreenState extends State<EditingScreen> {
     return Card(
       child: Column(
         children: [
-          //This is the edit button
-          IconButton(
-              icon: Icon(Icons.edit),
-              color: Colors.orange,
-              onPressed: () {
-                //brings up a pop up screen for making changes to an item
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Dialog(
-                        insetPadding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text('Edit Item'),
-                            TextFormField(
-                              controller: _editName,
-                              onChanged: setName,
-                              decoration:
-                                  InputDecoration(labelText: 'Item Name'),
-                            ),
-                            TextFormField(
-                              controller: _editDesc,
-                              onChanged: setDescription,
-                              decoration: InputDecoration(
-                                  labelText: 'Item Description'),
-                            ),
-
-                            //Button that bring up an edit menu where user can input
-                            //new name and description
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.green)),
-                              onPressed: () {
-                                //This setState changes the global variable for agendadisplay
-                                //to have the new values and clears the controllers
-                                //also pops the menu
-                                setState(() {
-                                  if (_editName != null) {
-                                    globals.agendaDisplay[globals.currentIndex]
-                                        .setName(index, tempName);
-                                  }
-                                  if (_editDesc != null) {
-                                    globals.agendaDisplay[globals.currentIndex]
-                                        .setDescription(index, tempDescription);
-                                  }
-
-                                  _editName.clear();
-                                  _editDesc.clear();
-                                  Navigator.of(context).pop();
-                                });
-                              },
-                              child: Text('Save Changes'),
-                            )
-                          ],
-                        ),
-                      );
+          Row(
+            children: [
+              ElevatedButton(
+                  child: Text('Save Changes'),
+                  onPressed: () {
+                    setState(() {
+                      globals.agendaDisplay[index]
+                          .setDeadline(index, selectedDate);
                     });
-              },
-              padding: const EdgeInsets.fromLTRB(350, 0, 0, 0)),
+                  }),
+              //This is the edit button
+              IconButton(
+                  icon: Icon(Icons.edit),
+                  color: Colors.orange,
+                  onPressed: () {
+                    //brings up a pop up screen for making changes to an item
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                            insetPadding:
+                                const EdgeInsets.fromLTRB(50, 0, 50, 0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text('Edit Item'),
+                                TextFormField(
+                                  controller: _editName,
+                                  onChanged: setName,
+                                  decoration:
+                                      InputDecoration(labelText: 'Item Name'),
+                                ),
+                                TextFormField(
+                                  controller: _editDesc,
+                                  onChanged: setDescription,
+                                  decoration: InputDecoration(
+                                      labelText: 'Item Description'),
+                                ),
+
+                                //Button that bring up an edit menu where user can input
+                                //new name and description
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.green)),
+                                  onPressed: () {
+                                    //This setState changes the global variable for agendadisplay
+                                    //to have the new values and clears the controllers
+                                    //also pops the menu
+                                    setState(() {
+                                      if (_editName != null) {
+                                        globals
+                                            .agendaDisplay[globals.currentIndex]
+                                            .setName(index, tempName);
+                                      }
+                                      if (_editDesc != null) {
+                                        globals
+                                            .agendaDisplay[globals.currentIndex]
+                                            .setDescription(
+                                                index, tempDescription);
+                                      }
+
+                                      _editName.clear();
+                                      _editDesc.clear();
+                                      Navigator.of(context).pop();
+                                    });
+                                  },
+                                  child: Text('Save Changes'),
+                                )
+                              ],
+                            ),
+                          );
+                        });
+                  },
+                  padding: const EdgeInsets.fromLTRB(250, 0, 0, 0)),
+            ],
+          ),
 
           //These are the name and description of the item that will appear on screen
           Text('Name: ' + item.getName()),
