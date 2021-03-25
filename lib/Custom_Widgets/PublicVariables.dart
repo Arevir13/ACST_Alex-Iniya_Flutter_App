@@ -3,7 +3,6 @@ library app.globals;
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/Agenda_Widget.dart';
 import 'package:practice_app/Custom_Widgets/ColorWidget.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 //imported agenda widget to be able to make a list of type Agenda
 //This creates the global variable named agendaDisplay used throughout the app
