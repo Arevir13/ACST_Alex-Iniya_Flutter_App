@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/ColorWidget.dart';
 import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
-import 'package:practice_app/services/auth.dart';
 
 class Settings extends StatefulWidget {
   @override

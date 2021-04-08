@@ -43,6 +43,8 @@ android {
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        //testInstrumentationRunner "andriodx.test.runner.AndriodJUnitRunner"
+        //multiDexEnabled true
     }
 
     buildTypes {
@@ -60,6 +62,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
 
 apply plugin: 'com.google.gms.google-services'
 
