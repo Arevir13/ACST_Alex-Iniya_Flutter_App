@@ -40,9 +40,12 @@ class HomeScreenState extends State<HomeScreen> {
           ),
           automaticallyImplyLeading: false,
           actions: <Widget>[
-            FlatButton.icon(
-              icon: Icon(Icons.person),
-              label: Text('logout'),
+            TextButton.icon(
+              icon: Icon(Icons.person, color: Colors.black),
+              label: Text('logout',
+                  style: TextStyle(
+                    color: Colors.black,
+                  )),
               onPressed: () async {
                 await _auth.signOut();
               },
@@ -57,6 +60,7 @@ class HomeScreenState extends State<HomeScreen> {
           child: Text('+',
               style: TextStyle(
                 fontSize: 30.0,
+                color: Colors.white,
               )),
           backgroundColor: globals.colorSelected.getColor(),
         ),
@@ -66,53 +70,75 @@ class HomeScreenState extends State<HomeScreen> {
           //displayed in a column format
           children: <Widget>[
             //children of type widget
-            FlatButton.icon(
+            TextButton.icon(
               //button to bring to Calendar Screen
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/calendarScreen');
               },
-              icon: Icon(Icons.calendar_today),
-              height: 60.0, //height of button
+              icon: Icon(
+                Icons.calendar_today,
+                color: Colors.black,
+              ),
+              style: ButtonStyle(
+                overlayColor: MaterialStateProperty.all(Colors.blue),
+                padding: MaterialStateProperty.all(
+                    const EdgeInsets.fromLTRB(0, 20, 0, 0)),
+              ),
               label: Text(
                 'View Calendar',
                 style: TextStyle(
                   fontSize: 25.0,
                   fontFamily: globals.fontFamily,
                   fontWeight: globals.weight,
+                  color: Colors.black,
                 ),
               ),
-              highlightColor: Colors.blue,
             ),
-            FlatButton.icon(
+            TextButton.icon(
               //button to bring to viewUnfinished Screen
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/viewUnfinished');
               },
-              icon: Icon(Icons.assignment),
-              height: 60.0, //height of button
+              icon: Icon(
+                Icons.assignment,
+                color: Colors.black,
+              ),
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all(
+                    const EdgeInsets.fromLTRB(0, 30, 0, 0)),
+                overlayColor: MaterialStateProperty.all(Colors.blue),
+              ),
+
               label: Text(
                 'View Unfinished',
                 style: TextStyle(
                   fontSize: 25.0,
                   fontFamily: globals.fontFamily,
                   fontWeight: globals.weight,
+                  color: Colors.black,
                 ),
               ),
-              highlightColor: Colors.blue,
             ),
-            FlatButton.icon(
+            TextButton.icon(
               //button to bring to displayScreen
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/displayScreen');
               },
-              icon: Icon(Icons.view_list),
-              height: 60.0, //height of button
+              icon: Icon(
+                Icons.view_list,
+                color: Colors.black,
+              ),
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all(
+                    const EdgeInsets.fromLTRB(0, 30, 0, 0)),
+              ),
               label: Text(
                 'View Agendas',
                 style: TextStyle(
                   fontSize: 25.0,
                   fontFamily: globals.fontFamily,
                   fontWeight: globals.weight,
+                  color: Colors.black,
                 ),
               ),
             ),

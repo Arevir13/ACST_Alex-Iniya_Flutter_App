@@ -39,7 +39,7 @@ class ViewUnfinishedState extends State<ViewUnfinished> {
           ),
           SizedBox(
               height: 30,
-              child: FlatButton(
+              child: TextButton(
                 //make sure to use a flatbutton or iconbutton when making
                 //multiple buttons on the same screen because floatingactionbuttons
                 //tend to freak out when there are multiple
