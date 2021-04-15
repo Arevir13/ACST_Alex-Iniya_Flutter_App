@@ -1,6 +1,7 @@
 import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/Agenda_Widget.dart';
+import 'package:practice_app/Pages/homeScreen.dart';
 
 class ViewUnfinished extends StatefulWidget {
   @override
@@ -60,11 +61,13 @@ class ViewUnfinishedState extends State<ViewUnfinished> {
         title: Text('All unfinished Items'),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.home),
-          onPressed: () {
-            Navigator.popAndPushNamed(context, '/homeScreen');
-          },
-        ),
+            icon: Icon(Icons.home),
+            onPressed: () {
+              while (globals.pagesPushed > 0) {
+                Navigator.pop(context);
+                globals.pagesPushed--;
+              }
+            }),
       ),
       body: SingleChildScrollView(
         //this body type is used to allow the screen to become scrollable

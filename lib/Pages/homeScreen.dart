@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
+import 'package:practice_app/Pages/createNewScreen.dart';
+import 'package:practice_app/Pages/settings.dart';
 import 'package:practice_app/services/auth.dart';
 
 //make sure to import this
@@ -16,6 +18,7 @@ class HomeScreenState extends State<HomeScreen> {
   //gives us access to this instance of AuthService (to access pre made methods)
   @override
   Widget build(BuildContext context) {
+    globals.pagesPushed = 0;
     return Scaffold(
         //this is the basic widget that contains the other widgets
         appBar: AppBar(
@@ -34,7 +37,11 @@ class HomeScreenState extends State<HomeScreen> {
               //creates settings button on top left of app bar
               IconButton(
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/settings');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Settings()),
+              ).then((value) => setState(() {}));
+              globals.pagesPushed++;
             },
             icon: Icon(Icons.settings),
           ),
@@ -55,7 +62,10 @@ class HomeScreenState extends State<HomeScreen> {
         floatingActionButton: FloatingActionButton(
           //create new button ("+" at the bottom of the screen)
           onPressed: () {
-            Navigator.pushReplacementNamed(context, '/createNewScreen');
+            Navigator.of(
+              context,
+            ).pushNamed('/createNewScreen');
+            globals.pagesPushed++;
           },
           child: Text('+',
               style: TextStyle(
@@ -73,7 +83,9 @@ class HomeScreenState extends State<HomeScreen> {
             TextButton.icon(
               //button to bring to Calendar Screen
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/calendarScreen');
+                //Navigator.pushReplacementNamed(context, '/calendarScreen');
+                Navigator.of(context).pushNamed('/calendarScreen');
+                globals.pagesPushed++;
               },
               icon: Icon(
                 Icons.calendar_today,
@@ -97,7 +109,9 @@ class HomeScreenState extends State<HomeScreen> {
             TextButton.icon(
               //button to bring to viewUnfinished Screen
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/viewUnfinished');
+                //Navigator.pushReplacementNamed(context, '/viewUnfinished');
+                Navigator.of(context).pushNamed('/viewUnfinished');
+                globals.pagesPushed++;
               },
               icon: Icon(
                 Icons.assignment,
@@ -122,7 +136,9 @@ class HomeScreenState extends State<HomeScreen> {
             TextButton.icon(
               //button to bring to displayScreen
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/displayScreen');
+                //Navigator.pushReplacementNamed(context, '/displayScreen');
+                Navigator.of(context).pushNamed('/displayScreen');
+                globals.pagesPushed++;
               },
               icon: Icon(
                 Icons.view_list,

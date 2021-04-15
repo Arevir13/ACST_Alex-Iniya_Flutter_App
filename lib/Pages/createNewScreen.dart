@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/Agenda_Widget.dart';
 import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
+import 'package:practice_app/Pages/homeScreen.dart';
 
 class CreateNewScreen extends StatefulWidget {
   @override
@@ -38,7 +39,10 @@ class CreateNewScreenState extends State<CreateNewScreen> {
         leading: IconButton(
           icon: Icon(Icons.home),
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/homeScreen');
+            while (globals.pagesPushed > 0) {
+              Navigator.pop(context);
+              globals.pagesPushed--;
+            }
           },
         ),
       ),
@@ -140,7 +144,10 @@ class CreateNewScreenState extends State<CreateNewScreen> {
           agenda.setDisplayIndex(globals.agendaDisplayIndex);
           globals.agendaDisplay.add(agenda);
           globals.agendaDisplayIndex++;
-          Navigator.pushReplacementNamed(context, '/displayScreen');
+          //Navigator.pushReplacementNamed(context, '/displayScreen');
+          Navigator.of(context).pushNamed('/displayScreen');
+          globals.pagesPushed++;
+
           //the agenda variable that was created earlier is initialized
           //using the imported constructor from the agenda widget.dart file.
           //the agenda is then using the imported methods from agendawidget.dart
