@@ -44,7 +44,7 @@ class DisplayScreenState extends State<DisplayScreen> {
               height: 30,
               child: Row(
                 children: [
-                  TextButton(
+                  IconButton(
                     //make sure to use a flatbutton or iconbutton when making
                     //multiple buttons on the same screen because floatingactionbuttons
                     //tend to freak out when there are multiple
@@ -55,11 +55,9 @@ class DisplayScreenState extends State<DisplayScreen> {
                       globals.currentIndex = agenda.getDisplayIndex();
                       Navigator.pushReplacementNamed(context, '/editingScreen');
                     },
-                    child: Text('Edit'),
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(
-                          const EdgeInsets.fromLTRB(0, 60, 0, 0)),
-                    ),
+                    icon: Icon(Icons.edit),
+
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   ),
                   //iconbutton to remove agendas from the list
                   IconButton(
