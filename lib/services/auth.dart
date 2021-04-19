@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:practice_app/models/user.dart';
-//import 'package:rxdart/rxdart.dart';
 
 class AuthService {
   //creating our own class in order to access the premade authentication methods

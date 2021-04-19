@@ -76,7 +76,10 @@ class CalendarScreenState extends State<CalendarScreen> {
         leading: IconButton(
           icon: Icon(Icons.home),
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/homeScreen');
+            while (globals.pagesPushed > 0) {
+              Navigator.pop(context);
+              globals.pagesPushed--;
+            }
           },
         ),
       ),

@@ -17,6 +17,7 @@ import 'package:practice_app/models/user.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(StreamProvider<User>.value(
+    initialData: null,
     /*StreamProvider package allows us to access the data provided by the 
     stream in any of the children widgets (all our other pages)
     This makes it so we can know the user auth status and then the wrapper

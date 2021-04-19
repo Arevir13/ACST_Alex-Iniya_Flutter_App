@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/ColorWidget.dart';
 import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
+import 'package:practice_app/Pages/homeScreen.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -18,7 +19,9 @@ class _SettingsState extends State<Settings> {
         leading: IconButton(
           icon: Icon(Icons.home),
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/homeScreen');
+            Navigator.pop(context, () {
+              setState(() {});
+            });
           },
         ),
       ),
