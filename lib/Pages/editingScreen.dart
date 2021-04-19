@@ -12,8 +12,7 @@ class EditingScreenState extends State<EditingScreen> {
   String tempDescription;
   TextEditingController name = TextEditingController();
   TextEditingController description = TextEditingController();
-  TextEditingController _editName = TextEditingController();
-  TextEditingController _editDesc = TextEditingController();
+
   DateTime selectedDate = DateTime.now();
 
   @override
@@ -27,6 +26,18 @@ class EditingScreenState extends State<EditingScreen> {
   Widget itemTemplate(Item item) {
     int index = globals.agendaDisplay[globals.currentIndex].getItemIndex(item);
     //this is the card that has all the other info on it including the buttons
+    TextEditingController _editName =
+        TextEditingController(text: item.getName());
+    TextEditingController _editDesc =
+        TextEditingController(text: item.getDescription());
+
+    @override
+    void dispose() {
+      _editDesc.dispose();
+      _editName.dispose();
+      super.dispose();
+    }
+
     return Card(
       child: Column(
         children: [
@@ -81,12 +92,12 @@ class EditingScreenState extends State<EditingScreen> {
                                     //to have the new values and clears the controllers
                                     //also pops the menu
                                     setState(() {
-                                      if (_editName != null) {
+                                      if (tempName != null) {
                                         globals
                                             .agendaDisplay[globals.currentIndex]
                                             .setName(index, tempName);
                                       }
-                                      if (_editDesc != null) {
+                                      if (tempDescription != null) {
                                         globals
                                             .agendaDisplay[globals.currentIndex]
                                             .setDescription(

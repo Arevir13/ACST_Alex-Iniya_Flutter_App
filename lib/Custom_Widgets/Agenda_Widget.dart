@@ -6,15 +6,21 @@ class Agenda {
   List agenda;
   String title;
   int displayIndex;
+  DateTime creationdate;
   Agenda() {
     agenda = <Item>[];
     title = '';
     displayIndex = null;
+    creationdate = DateTime.now();
   }
 //displayIndex methods will be used in the editing screen so it knows
 //what index of the global agenda list to display
   void setDisplayIndex(int i) {
     displayIndex = i;
+  }
+
+  DateTime getCreationDate() {
+    return creationdate;
   }
 
   int getLength() {
@@ -102,6 +108,14 @@ class Agenda {
     return s;
   }
 
+  String itemCalendarString() {
+    String s = '';
+    for (Item x in agenda) {
+      s += (x.toCalendarString() + "\n\n");
+    }
+    return s;
+  }
+
 //method to make a string of only unfinished items in Agenda
 //called in viewUnfinished
   String unfinishedString() {
@@ -174,6 +188,18 @@ class Item {
 
   bool getRepeat() {
     return repeat;
+  }
+
+  //This is just a cleaner version of the tostring to be displayed on the calendar
+  String toCalendarString() {
+    return 'Name: ' +
+        name +
+        '\n' +
+        'Description: ' +
+        description +
+        '\n' +
+        'Due: ' +
+        deadline;
   }
 
   String toString() {

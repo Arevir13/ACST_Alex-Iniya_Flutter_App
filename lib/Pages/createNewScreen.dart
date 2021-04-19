@@ -34,7 +34,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: globals.colorSelected.getColor(),
-        title: Text('Create new'),
+        title: Text('Create New Agenda'),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.home),
@@ -64,9 +64,12 @@ class CreateNewScreenState extends State<CreateNewScreen> {
               Container(
                 child: TextField(
                   controller: controller,
-                  textAlignVertical: TextAlignVertical.center,
+                  textAlignVertical: TextAlignVertical.bottom,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), hintText: 'Enter A title'),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              MediaQuery.of(context).size.height / 15)),
+                      hintText: 'Enter A title'),
                   onChanged: setT,
                 ),
                 //text field will use the setT function when it is changed
@@ -76,44 +79,50 @@ class CreateNewScreenState extends State<CreateNewScreen> {
                 height: 40,
                 padding: EdgeInsets.symmetric(horizontal: 75),
                 alignment: Alignment.centerLeft,
-                margin: EdgeInsets.only(bottom: 20),
+                margin: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).size.height / 15),
               ),
-              Row(
-                children: [
-                  Text(
-                    '  Enter Item name',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  //Text above the second text field
-                ],
+
+              Text(
+                '  Enter Item name',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
+              //Text above the second text field
+
               Container(
                 child: TextField(
                   controller: controller2,
+                  textAlignVertical: TextAlignVertical.bottom,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), hintText: 'Enter a Name'),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              MediaQuery.of(context).size.height / 15)),
+                      hintText: 'Enter a Name'),
                   onChanged: setN,
                 ),
                 //when changed, sets assigns the name entered to the agenda item name
                 //*note, the agenda variable is not actually changed until later on
-                width: 500,
+                width: 400,
                 height: 40,
-                padding: EdgeInsets.only(right: 150),
-                margin: EdgeInsets.fromLTRB(10, 0, 0, 30),
+                padding: EdgeInsets.symmetric(horizontal: 75),
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).size.height / 15),
               ),
-              Row(
-                children: [
-                  Text(
-                    '  Enter Item Description',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ],
+
+              Text(
+                '  Enter Item Description',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
+
               Container(
                 child: TextField(
                   controller: controller3,
+                  textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              MediaQuery.of(context).size.height / 15)),
                       hintText: 'Enter a Description'),
                   onChanged: setDesc,
                 ),
