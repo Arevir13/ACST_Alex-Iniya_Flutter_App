@@ -190,6 +190,7 @@ class Item {
     return repeat;
   }
 
+  //This is just a cleaner version of the tostring to be displayed on the calendar
   String toCalendarString() {
     return 'Name: ' +
         name +
