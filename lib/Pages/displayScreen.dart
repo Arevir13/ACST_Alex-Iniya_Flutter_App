@@ -53,7 +53,6 @@ class DisplayScreenState extends State<DisplayScreen> {
                       //this allows the edit screen to use the currentIndex
                       //to pull up the correct agenda
                       globals.currentIndex = agenda.getDisplayIndex();
-                      //Navigator.pushReplacementNamed(context, '/editingScreen');
                       Navigator.of(context).pushNamed('/editingScreen');
                     },
                     icon: Icon(Icons.edit),

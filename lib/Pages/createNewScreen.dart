@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/Agenda_Widget.dart';
 import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
-import 'package:practice_app/Pages/homeScreen.dart';
 
 class CreateNewScreen extends StatefulWidget {
   @override
@@ -153,7 +152,6 @@ class CreateNewScreenState extends State<CreateNewScreen> {
           agenda.setDisplayIndex(globals.agendaDisplayIndex);
           globals.agendaDisplay.add(agenda);
           globals.agendaDisplayIndex++;
-          //Navigator.pushReplacementNamed(context, '/displayScreen');
           Navigator.of(context).pushNamed('/displayScreen');
           globals.pagesPushed++;
 

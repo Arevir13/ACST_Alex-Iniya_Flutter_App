@@ -45,7 +45,7 @@ class ViewUnfinishedState extends State<ViewUnfinished> {
                 //multiple buttons on the same screen because floatingactionbuttons
                 //tend to freak out when there are multiple
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/editingScreen');
+                  Navigator.of(context).pushNamed('/editingScreen');
                 },
                 child: Text('Edit'),
               )),

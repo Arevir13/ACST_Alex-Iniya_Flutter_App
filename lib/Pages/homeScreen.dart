@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:practice_app/Custom_Widgets/PublicVariables.dart' as globals;
-import 'package:practice_app/Pages/createNewScreen.dart';
 import 'package:practice_app/Pages/settings.dart';
 import 'package:practice_app/services/auth.dart';
 
@@ -83,7 +82,6 @@ class HomeScreenState extends State<HomeScreen> {
             TextButton.icon(
               //button to bring to Calendar Screen
               onPressed: () {
-                //Navigator.pushReplacementNamed(context, '/calendarScreen');
                 Navigator.of(context).pushNamed('/calendarScreen');
                 globals.pagesPushed++;
               },
@@ -109,7 +107,6 @@ class HomeScreenState extends State<HomeScreen> {
             TextButton.icon(
               //button to bring to viewUnfinished Screen
               onPressed: () {
-                //Navigator.pushReplacementNamed(context, '/viewUnfinished');
                 Navigator.of(context).pushNamed('/viewUnfinished');
                 globals.pagesPushed++;
               },
@@ -136,7 +133,6 @@ class HomeScreenState extends State<HomeScreen> {
             TextButton.icon(
               //button to bring to displayScreen
               onPressed: () {
-                //Navigator.pushReplacementNamed(context, '/displayScreen');
                 Navigator.of(context).pushNamed('/displayScreen');
                 globals.pagesPushed++;
               },
