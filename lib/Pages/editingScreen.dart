@@ -13,7 +13,7 @@ class EditingScreenState extends State<EditingScreen> {
   TextEditingController name = TextEditingController();
   TextEditingController description = TextEditingController();
 
-  DateTime selectedDate = DateTime.now();
+  String selectedDate = DateTime.now().toString();
 
   @override
   void dispose() {
@@ -43,14 +43,6 @@ class EditingScreenState extends State<EditingScreen> {
         children: [
           Row(
             children: [
-              ElevatedButton(
-                  child: Text('Save Changes'),
-                  onPressed: () {
-                    setState(() {
-                      globals.agendaDisplay[index]
-                          .setDeadline(index, selectedDate);
-                    });
-                  }),
               //This is the edit button
               IconButton(
                   icon: Icon(Icons.edit),
@@ -156,7 +148,7 @@ class EditingScreenState extends State<EditingScreen> {
               ),
               //This calls the calendar function to pop up on the screen
               ElevatedButton(
-                onPressed: () => _selectDate(context),
+                onPressed: () => _selectDate(index),
                 child: Text(
                   'Select date',
                   style: TextStyle(
@@ -197,7 +189,7 @@ class EditingScreenState extends State<EditingScreen> {
         leading: IconButton(
           icon: Icon(Icons.view_agenda),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.popAndPushNamed(context, '/displayScreen');
           },
         ),
       ),
@@ -237,6 +229,9 @@ class EditingScreenState extends State<EditingScreen> {
                             TextButton(
                               child: Text("Add"),
                               style: ButtonStyle(
+                                  foregroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.black),
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
                                           Colors.green)),
@@ -269,16 +264,6 @@ class EditingScreenState extends State<EditingScreen> {
           )
         ],
       )),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        child: Icon(Icons.view_agenda),
-        backgroundColor: Colors.purple,
-      ),
-      //NOTE: Dont have multiple floatingActionButtons on the screen at once as
-      //it will cause errors
     );
   }
 
@@ -287,26 +272,34 @@ class EditingScreenState extends State<EditingScreen> {
   void setName(String s) {
     setState(() {
       tempName = s;
+      if (s == null) {
+        tempName = '';
+      }
     });
   }
 
   void setDescription(String s) {
     setState(() {
       tempDescription = s;
+      if (s == null) {
+        tempDescription = '';
+      }
     });
   }
 
   //This brings up the calendar to select a date for the item
-  _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+  _selectDate(int index) async {
+    DateTime picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate,
+      initialDate: DateTime.parse(selectedDate),
       firstDate: DateTime(2000),
       lastDate: DateTime(2025),
     );
-    if (picked != null && picked != selectedDate)
+    if (picked != null && picked != DateTime.parse(selectedDate))
       setState(() {
-        selectedDate = picked;
+        selectedDate = picked.toString();
+        globals.agendaDisplay[globals.currentIndex]
+            .setDeadline(index, DateTime.parse(selectedDate));
       });
   }
 }

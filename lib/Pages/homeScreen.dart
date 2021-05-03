@@ -61,9 +61,7 @@ class HomeScreenState extends State<HomeScreen> {
         floatingActionButton: FloatingActionButton(
           //create new button ("+" at the bottom of the screen)
           onPressed: () {
-            Navigator.of(
-              context,
-            ).pushNamed('/createNewScreen');
+            Navigator.of(context).pushNamed('/createNewScreen');
             globals.pagesPushed++;
           },
           child: Text('+',
@@ -73,88 +71,108 @@ class HomeScreenState extends State<HomeScreen> {
               )),
           backgroundColor: globals.colorSelected.getColor(),
         ),
-        body: Center(
+        body: Container(
+            color: Colors.white,
             child: Column(
-          //child is a column widget because the buttons will be
-          //displayed in a column format
-          children: <Widget>[
-            //children of type widget
-            TextButton.icon(
-              //button to bring to Calendar Screen
-              onPressed: () {
-                Navigator.of(context).pushNamed('/calendarScreen');
-                globals.pagesPushed++;
-              },
-              icon: Icon(
-                Icons.calendar_today,
-                color: Colors.black,
-              ),
-              style: ButtonStyle(
-                overlayColor: MaterialStateProperty.all(Colors.blue),
-                padding: MaterialStateProperty.all(
-                    const EdgeInsets.fromLTRB(0, 20, 0, 0)),
-              ),
-              label: Text(
-                'View Calendar',
-                style: TextStyle(
-                  fontSize: 25.0,
-                  fontFamily: globals.fontFamily,
-                  fontWeight: globals.weight,
-                  color: Colors.black,
+              //child is a column widget because the buttons will be
+              //displayed in a column format
+              children: <Widget>[
+                //children of type widget
+                Container(height: MediaQuery.of(context).size.height / 8),
+                TextButton.icon(
+                  //button to bring to Calendar Screen
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/calendarScreen');
+                    globals.pagesPushed++;
+                  },
+                  icon: Icon(
+                    Icons.calendar_today,
+                    color: Colors.black,
+                  ),
+                  style: ButtonStyle(
+                    overlayColor: MaterialStateProperty.all(Colors.blue),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: Colors.black, width: 1))),
+                    backgroundColor: MaterialStateProperty.all(
+                        globals.colorSelected.getColor()),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(7)),
+                  ),
+                  label: Text(
+                    'View Calendar',
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontFamily: globals.fontFamily,
+                      fontWeight: globals.weight,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            TextButton.icon(
-              //button to bring to viewUnfinished Screen
-              onPressed: () {
-                Navigator.of(context).pushNamed('/viewUnfinished');
-                globals.pagesPushed++;
-              },
-              icon: Icon(
-                Icons.assignment,
-                color: Colors.black,
-              ),
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(
-                    const EdgeInsets.fromLTRB(0, 30, 0, 0)),
-                overlayColor: MaterialStateProperty.all(Colors.blue),
-              ),
+                Container(height: MediaQuery.of(context).size.height / 8),
+                TextButton.icon(
+                  //button to bring to viewUnfinished Screen
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/viewUnfinished');
+                    globals.pagesPushed++;
+                  },
+                  icon: Icon(
+                    Icons.assignment,
+                    color: Colors.black,
+                  ),
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: Colors.black, width: 1))),
+                    backgroundColor: MaterialStateProperty.all(
+                        globals.colorSelected.getColor()),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(7)),
+                    overlayColor: MaterialStateProperty.all(Colors.blue),
+                  ),
 
-              label: Text(
-                'View Unfinished',
-                style: TextStyle(
-                  fontSize: 25.0,
-                  fontFamily: globals.fontFamily,
-                  fontWeight: globals.weight,
-                  color: Colors.black,
+                  label: Text(
+                    'View Unfinished',
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontFamily: globals.fontFamily,
+                      fontWeight: globals.weight,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            TextButton.icon(
-              //button to bring to displayScreen
-              onPressed: () {
-                Navigator.of(context).pushNamed('/displayScreen');
-                globals.pagesPushed++;
-              },
-              icon: Icon(
-                Icons.view_list,
-                color: Colors.black,
-              ),
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(
-                    const EdgeInsets.fromLTRB(0, 30, 0, 0)),
-              ),
-              label: Text(
-                'View Agendas',
-                style: TextStyle(
-                  fontSize: 25.0,
-                  fontFamily: globals.fontFamily,
-                  fontWeight: globals.weight,
-                  color: Colors.black,
+                Container(height: MediaQuery.of(context).size.height / 8),
+                TextButton.icon(
+                  //button to bring to displayScreen
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/displayScreen');
+                    globals.pagesPushed++;
+                  },
+                  icon: Icon(
+                    Icons.view_list,
+                    color: Colors.black,
+                  ),
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: Colors.black, width: 1))),
+                    backgroundColor: MaterialStateProperty.all(
+                        globals.colorSelected.getColor()),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(7)),
+                    overlayColor: MaterialStateProperty.all(Colors.blue),
+                  ),
+                  label: Text(
+                    'View Agendas',
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontFamily: globals.fontFamily,
+                      fontWeight: globals.weight,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ],
-        )));
+              ],
+            )));
   }
 }
