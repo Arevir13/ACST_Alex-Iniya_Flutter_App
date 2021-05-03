@@ -191,6 +191,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0"
+<<<<<<< HEAD
   nested:
     dependency: transitive
     description:
@@ -198,6 +199,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+=======
+>>>>>>> testing
   path:
     dependency: transitive
     description:
@@ -280,6 +283,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+<<<<<<< HEAD
   table_calendar:
     dependency: "direct main"
     description:
@@ -287,6 +291,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+=======
+>>>>>>> testing
   term_glyph:
     dependency: transitive
     description:
@@ -316,5 +322,10 @@ packages:
     source: hosted
     version: "2.1.0"
 sdks:
+<<<<<<< HEAD
   dart: ">=2.12.0 <3.0.0"
   flutter: ">=1.17.0"
+=======
+  dart: ">=2.12.0-0.0 <3.0.0"
+  flutter: ">=1.12.13+hotfix.5"
+>>>>>>> testing
