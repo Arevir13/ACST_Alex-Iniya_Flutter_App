@@ -40,10 +40,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
         leading: IconButton(
           icon: Icon(Icons.home),
           onPressed: () {
-            while (globals.pagesPushed > 0) {
-              Navigator.pop(context);
-              globals.pagesPushed--;
-            }
+            Navigator.pop(context);
           },
         ),
         actions: <Widget>[
@@ -160,8 +157,9 @@ class CreateNewScreenState extends State<CreateNewScreen> {
           agenda.setDisplayIndex(globals.agendaDisplayIndex);
           globals.agendaDisplay.add(agenda);
           globals.agendaDisplayIndex++;
-          Navigator.of(context).pushNamed('/displayScreen');
+          Navigator.of(context).popAndPushNamed('/displayScreen');
           globals.pagesPushed++;
+          print(globals.pagesPushed);
 
           //the agenda variable that was created earlier is initialized
           //using the imported constructor from the agenda widget.dart file.

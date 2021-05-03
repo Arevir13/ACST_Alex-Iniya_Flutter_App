@@ -189,7 +189,7 @@ class EditingScreenState extends State<EditingScreen> {
         leading: IconButton(
           icon: Icon(Icons.view_agenda),
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/displayScreen');
+            Navigator.pop(context);
           },
         ),
       ),
