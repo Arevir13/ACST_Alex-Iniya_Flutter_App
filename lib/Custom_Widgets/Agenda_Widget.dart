@@ -1,3 +1,4 @@
+//import 'package:intl/intl_browser.dart';
 //This is a class file that is meant to be imported into other files when working
 //with agenda items so those files can have access to all the functions
 //related to the agenda and its items.
@@ -6,12 +7,12 @@ class Agenda {
   List agenda;
   String title;
   int displayIndex;
-  DateTime creationdate;
+  String creationdate;
   Agenda() {
     agenda = <Item>[];
     title = '';
     displayIndex = null;
-    creationdate = DateTime.now();
+    creationdate = DateTime.now().toString();
   }
 //displayIndex methods will be used in the editing screen so it knows
 //what index of the global agenda list to display
@@ -19,8 +20,15 @@ class Agenda {
     displayIndex = i;
   }
 
+  //Because DateTime variables cant be changed we use a string as the variable
+  //and convert it to datetime everytime we want to use it that way it can be
+  //changed freely
   DateTime getCreationDate() {
-    return creationdate;
+    return DateTime.parse(creationdate);
+  }
+
+  void setCreationDate(String d) {
+    creationdate = d;
   }
 
   int getLength() {

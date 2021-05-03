@@ -18,6 +18,8 @@ class CreateNewScreenState extends State<CreateNewScreen> {
   String description;
   Agenda agenda;
 
+  String selectedDate = DateTime.now().toString();
+
   //Creating an agenda variable and other variables to pass into agenda
 
   @override
@@ -44,94 +46,99 @@ class CreateNewScreenState extends State<CreateNewScreen> {
             }
           },
         ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: _selectDate,
+            child: Text(
+              'Select Date',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
-      body: Container(
-          alignment: Alignment.center,
-          height: 535,
-          width: 500,
-          //the size of the box containing all the text form fields
-
+      body: Center(
           child: Column(
-            //child is a column because columns and rows have the children
-            //property which is needed for displaying multiple widgets
-            children: <Widget>[
-              Text(
-                'Enter a Title for your agenda',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              //text above the text field
-              Container(
-                child: TextField(
-                  controller: controller,
-                  textAlignVertical: TextAlignVertical.bottom,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              MediaQuery.of(context).size.height / 15)),
-                      hintText: 'Enter A title'),
-                  onChanged: setT,
-                ),
-                //text field will use the setT function when it is changed
-                //which assigns the text entered to the agenda title
-                //*note, agenda variable is not actually changed until later on
-                width: 400,
-                height: 40,
-                padding: EdgeInsets.symmetric(horizontal: 75),
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).size.height / 15),
-              ),
+        //child is a column because columns and rows have the children
+        //property which is needed for displaying multiple widgets
+        children: <Widget>[
+          Text(
+            'Enter a Title for your agenda',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          //text above the text field
+          Container(
+            child: TextField(
+              controller: controller,
+              textAlignVertical: TextAlignVertical.bottom,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(
+                          MediaQuery.of(context).size.height / 15)),
+                  hintText: 'Enter A title'),
+              onChanged: setT,
+            ),
+            //text field will use the setT function when it is changed
+            //which assigns the text entered to the agenda title
+            //*note, agenda variable is not actually changed until later on
+            width: 400,
+            height: 40,
+            padding: EdgeInsets.symmetric(horizontal: 75),
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height / 20),
+          ),
 
-              Text(
-                '  Enter Item name',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              //Text above the second text field
+          Text(
+            '  Enter Item name',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          //Text above the second text field
 
-              Container(
-                child: TextField(
-                  controller: controller2,
-                  textAlignVertical: TextAlignVertical.bottom,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              MediaQuery.of(context).size.height / 15)),
-                      hintText: 'Enter a Name'),
-                  onChanged: setN,
-                ),
-                //when changed, sets assigns the name entered to the agenda item name
-                //*note, the agenda variable is not actually changed until later on
-                width: 400,
-                height: 40,
-                padding: EdgeInsets.symmetric(horizontal: 75),
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).size.height / 15),
-              ),
+          Container(
+            child: TextField(
+              controller: controller2,
+              textAlignVertical: TextAlignVertical.bottom,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(
+                          MediaQuery.of(context).size.height / 15)),
+                  hintText: 'Enter a Name'),
+              onChanged: setN,
+            ),
+            //when changed, sets assigns the name entered to the agenda item name
+            //*note, the agenda variable is not actually changed until later on
+            width: 400,
+            height: 40,
+            padding: EdgeInsets.symmetric(horizontal: 75),
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height / 20),
+          ),
 
-              Text(
-                '  Enter Item Description',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
+          Text(
+            '  Enter Item Description',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
 
-              Container(
-                child: TextField(
-                  controller: controller3,
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              MediaQuery.of(context).size.height / 15)),
-                      hintText: 'Enter a Description'),
-                  onChanged: setDesc,
-                ),
-                //sets agenda description to the text entered
-                width: 400,
-                padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-              ),
-            ],
-          )),
+          Container(
+            child: TextField(
+              controller: controller3,
+              textAlignVertical: TextAlignVertical.center,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(
+                          MediaQuery.of(context).size.height / 15)),
+                  hintText: 'Enter a Description'),
+              onChanged: setDesc,
+            ),
+            //sets agenda description to the text entered
+            width: 400,
+            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+            margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+          ),
+          //Button used to open datepicker menu
+        ],
+      )),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           //this first if statement prevents the user from leaving a field
@@ -141,6 +148,7 @@ class CreateNewScreenState extends State<CreateNewScreen> {
             return null;
           }
           agenda = Agenda();
+          agenda.setCreationDate(selectedDate);
           agenda.setTitle(getT());
           agenda.addItem(getN(), getDesc(), false, false);
           //the agendaDisplayIndex is set to null by default when the app starts
@@ -165,9 +173,22 @@ class CreateNewScreenState extends State<CreateNewScreen> {
         },
         label: Text('Finish'),
         icon: Icon(Icons.check),
-        backgroundColor: Colors.green[500],
+        backgroundColor: globals.colorSelected.getColor(),
       ),
     );
+  }
+
+  void _selectDate() async {
+    DateTime picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.parse(selectedDate),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+    if (picked != null && picked != DateTime.parse(selectedDate))
+      setState(() {
+        selectedDate = picked.toString();
+      });
   }
 
 //Below are the methods for setting values used in the text form fields
