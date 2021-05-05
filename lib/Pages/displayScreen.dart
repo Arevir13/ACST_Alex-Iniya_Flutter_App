@@ -54,7 +54,7 @@ class DisplayScreenState extends State<DisplayScreen> {
                       //to pull up the correct agenda
                       globals.currentIndex = agenda.getDisplayIndex();
                       Navigator.of(context).pushNamed('/editingScreen');
-                      globals.pagesPushed++;
+                      print(globals.pagesPushed);
                     },
                     icon: Icon(Icons.edit),
 

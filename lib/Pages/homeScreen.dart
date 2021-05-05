@@ -17,7 +17,7 @@ class HomeScreenState extends State<HomeScreen> {
   //gives us access to this instance of AuthService (to access pre made methods)
   @override
   Widget build(BuildContext context) {
-    globals.pagesPushed = 0;
+    print(globals.pagesPushed);
     return Scaffold(
         //this is the basic widget that contains the other widgets
         appBar: AppBar(
@@ -40,7 +40,6 @@ class HomeScreenState extends State<HomeScreen> {
                 context,
                 MaterialPageRoute(builder: (context) => Settings()),
               ).then((value) => setState(() {}));
-              globals.pagesPushed++;
             },
             icon: Icon(Icons.settings),
           ),
@@ -62,7 +61,7 @@ class HomeScreenState extends State<HomeScreen> {
           //create new button ("+" at the bottom of the screen)
           onPressed: () {
             Navigator.of(context).pushNamed('/createNewScreen');
-            globals.pagesPushed++;
+            print(globals.pagesPushed);
           },
           child: Text('+',
               style: TextStyle(
@@ -84,6 +83,7 @@ class HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     Navigator.of(context).pushNamed('/calendarScreen');
                     globals.pagesPushed++;
+                    print(globals.pagesPushed);
                   },
                   icon: Icon(
                     Icons.calendar_today,
@@ -115,6 +115,7 @@ class HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     Navigator.of(context).pushNamed('/viewUnfinished');
                     globals.pagesPushed++;
+                    print(globals.pagesPushed);
                   },
                   icon: Icon(
                     Icons.assignment,
@@ -147,6 +148,7 @@ class HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     Navigator.of(context).pushNamed('/displayScreen');
                     globals.pagesPushed++;
+                    print(globals.pagesPushed);
                   },
                   icon: Icon(
                     Icons.view_list,

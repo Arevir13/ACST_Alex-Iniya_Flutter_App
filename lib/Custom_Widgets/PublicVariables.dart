@@ -35,6 +35,6 @@ String fontFamily = 'Montserrat';
 //access "light" with w300, "regular" with w400, and "bold" with w500
 FontWeight weight = FontWeight.w400;
 
-int pagesPushed;
+int pagesPushed = 0;
 //keeps track of how many pages are pushed over the homeScreen
 //whenever hit the home button on any screen, will pop until this int is 0
