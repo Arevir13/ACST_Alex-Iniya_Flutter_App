@@ -14,6 +14,7 @@ class CalendarScreenState extends State<CalendarScreen> {
   DateTime _selectedDay;
   DateTime _focusedDay = DateTime.now();
   List _selectedEvents;
+  List _dueEvents;
 
   //This is important for when we will be comparing dates
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
@@ -41,6 +42,20 @@ class CalendarScreenState extends State<CalendarScreen> {
     return events;
   }
 
+  List _getDueEventsForDay(DateTime day) {
+    List dueEvents = [''];
+    for (Agenda agenda in globals.agendaDisplay) {
+      for (Item item in agenda.getItemList()) {
+        if (formatter.format(DateTime.parse(item.getDeadline())) ==
+            formatter.format(day)) {
+          dueEvents.add(item.toCalendarString());
+        }
+      }
+    }
+    dueEvents.remove('');
+    return dueEvents;
+  }
+
   //this method is called every time a new day is selected and first checks to
   //make sure its not the same day, then it updates all the variables.
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
@@ -49,6 +64,7 @@ class CalendarScreenState extends State<CalendarScreen> {
         _selectedDay = selectedDay;
         _focusedDay = focusedDay;
         _selectedEvents = _getEventsForDay(selectedDay);
+        _dueEvents = _getDueEventsForDay(selectedDay);
       });
     }
   }
@@ -111,7 +127,7 @@ class CalendarScreenState extends State<CalendarScreen> {
             ),
             //Container with text separating events from the calendar
             Container(
-              child: Text('For Today',
+              child: Text('Todays Agenda',
                   textScaleFactor: 1.5,
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ),
@@ -135,6 +151,30 @@ class CalendarScreenState extends State<CalendarScreen> {
                       event,
                       style: TextStyle(
                           color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15),
+                    )),
+                  ),
+                )),
+            Container(
+              padding: const EdgeInsets.all(15),
+              child: Text('Due Today',
+                  textScaleFactor: 1.5,
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            //This is what displayes the events that are due on that day
+            ..._dueEvents.map((event) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey)),
+                    child: Center(
+                        child: Text(
+                      event,
+                      style: TextStyle(
+                          color: Colors.red,
                           fontWeight: FontWeight.bold,
                           fontSize: 15),
                     )),
