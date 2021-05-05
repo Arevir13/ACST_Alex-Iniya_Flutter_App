@@ -96,6 +96,15 @@ class CalendarScreenState extends State<CalendarScreen> {
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
+    _todayEventsIndex = 0;
+    for (Agenda agenda in globals.agendaDisplay) {
+      if (formatter.format(agenda.getCreationDate()) ==
+          formatter.format(_selectedDay)) {
+        for (Item item in agenda.getItemList()) {
+          _todayEventsIndex++;
+        }
+      }
+    }
     _selectedEvents = _getEventsForDay(_selectedDay);
   }
 
