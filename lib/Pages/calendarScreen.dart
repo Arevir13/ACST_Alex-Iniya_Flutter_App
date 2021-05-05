@@ -16,12 +16,17 @@ class CalendarScreenState extends State<CalendarScreen> {
   List _selectedEvents;
   List _dueEvents;
 
+  int _todayEventsIndex;
+
   //This is important for when we will be comparing dates
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
 
   //This is the method that will be called every time we select a day to determine
   //what to show for that day
   List _getEventsForDay(DateTime day) {
+    //This list wil contain both of the lists and will be separated in another function
+    List totalEvents = [''];
+
     //initializes a temporary list with an empty string just so we can use add method
     List events = [''];
 
@@ -39,21 +44,29 @@ class CalendarScreenState extends State<CalendarScreen> {
 
     //remove the temporary empty string
     events.remove('');
-    return events;
-  }
 
-  List _getDueEventsForDay(DateTime day) {
+    for (String event in events) {
+      totalEvents.add(event);
+    }
+    totalEvents.remove('');
+
+    //this is the second list that will be used to display only items due that day
     List dueEvents = [''];
+    //checks through every agenda regardless of date and looks for item whos
+    //due date matches the current day
     for (Agenda agenda in globals.agendaDisplay) {
       for (Item item in agenda.getItemList()) {
-        if (formatter.format(DateTime.parse(item.getDeadline())) ==
-            formatter.format(day)) {
+        if (formatter.format((item.getDeadline())) == formatter.format(day)) {
           dueEvents.add(item.toCalendarString());
         }
       }
     }
     dueEvents.remove('');
-    return dueEvents;
+    for (String event in dueEvents) {
+      totalEvents.add(event);
+    }
+
+    return totalEvents;
   }
 
   //this method is called every time a new day is selected and first checks to
@@ -61,10 +74,19 @@ class CalendarScreenState extends State<CalendarScreen> {
   void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
     if (!isSameDay(_selectedDay, selectedDay)) {
       setState(() {
+        _todayEventsIndex = 0;
+        for (Agenda agenda in globals.agendaDisplay) {
+          if (formatter.format(agenda.getCreationDate()) ==
+              formatter.format(selectedDay)) {
+            for (Item item in agenda.getItemList()) {
+              _todayEventsIndex++;
+            }
+          }
+        }
+
         _selectedDay = selectedDay;
         _focusedDay = focusedDay;
         _selectedEvents = _getEventsForDay(selectedDay);
-        _dueEvents = _getDueEventsForDay(selectedDay);
       });
     }
   }
@@ -74,6 +96,15 @@ class CalendarScreenState extends State<CalendarScreen> {
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
+    _todayEventsIndex = 0;
+    for (Agenda agenda in globals.agendaDisplay) {
+      if (formatter.format(agenda.getCreationDate()) ==
+          formatter.format(_selectedDay)) {
+        for (Item item in agenda.getItemList()) {
+          _todayEventsIndex++;
+        }
+      }
+    }
     _selectedEvents = _getEventsForDay(_selectedDay);
   }
 
@@ -139,47 +170,51 @@ class CalendarScreenState extends State<CalendarScreen> {
             //in selected events to the column. This is pretty much the same thing
             //used in the display screen but the ... is needed because there are
             //other widgets aside from the map function that need to get combined into the column.
-            ..._selectedEvents.map((event) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white,
-                        border: Border.all(color: Colors.grey)),
-                    child: Center(
-                        child: Text(
-                      event,
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
+            ..._selectedEvents
+                .getRange(0, _todayEventsIndex)
+                .map((event) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.white,
+                            border: Border.all(color: Colors.grey)),
+                        child: Center(
+                            child: Text(
+                          event,
+                          style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15),
+                        )),
+                      ),
                     )),
-                  ),
-                )),
             Container(
-              padding: const EdgeInsets.all(15),
               child: Text('Due Today',
                   textScaleFactor: 1.5,
                   style: TextStyle(fontWeight: FontWeight.bold)),
             ),
+
             //This is what displayes the events that are due on that day
-            ..._dueEvents.map((event) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white,
-                        border: Border.all(color: Colors.grey)),
-                    child: Center(
-                        child: Text(
-                      event,
-                      style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
+            ..._selectedEvents
+                .getRange(_todayEventsIndex, _selectedEvents.length)
+                .map((event) => Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.white,
+                            border: Border.all(color: Colors.grey)),
+                        child: Center(
+                            child: Text(
+                          event,
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15),
+                        )),
+                      ),
                     )),
-                  ),
-                )),
           ],
         ),
       ),

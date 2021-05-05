@@ -96,7 +96,7 @@ class Agenda {
     return agenda[index].getDeadline();
   }
 
-  void setDeadline(int index, DateTime date) {
+  void setDeadline(int index, String date) {
     agenda[index].setDeadline(date);
   }
 
@@ -155,11 +155,11 @@ class Item {
     description = d;
     checked = c;
     repeat = r;
-    deadline = '';
+    deadline = DateTime.now().toString();
   }
 
-  void setDeadline(DateTime date) {
-    deadline = date.month.toString() + '/' + date.day.toString();
+  void setDeadline(String date) {
+    deadline = date;
   }
 
   void setName(String newName) {
@@ -178,8 +178,8 @@ class Item {
     repeat = newRep;
   }
 
-  String getDeadline() {
-    return deadline;
+  DateTime getDeadline() {
+    return DateTime.parse(deadline);
   }
 
   String getName() {
@@ -207,7 +207,9 @@ class Item {
         description +
         '\n' +
         'Due: ' +
-        deadline;
+        DateTime.parse(deadline).month.toString() +
+        ' / ' +
+        DateTime.parse(deadline).day.toString();
   }
 
   String toString() {
@@ -230,7 +232,9 @@ class Item {
             '\n Unchecked, Repeat ON' +
             '\n' +
             'Due: ' +
-            deadline;
+            DateTime.parse(deadline).month.toString() +
+            ' / ' +
+            DateTime.parse(deadline).day.toString();
       } else
         return name +
             ': ' +
@@ -238,7 +242,9 @@ class Item {
             '\n Unchecked, Repeat OFF' +
             '\n' +
             'Due: ' +
-            deadline;
+            DateTime.parse(deadline).month.toString() +
+            ' / ' +
+            DateTime.parse(deadline).day.toString();
     } else if (checked && repeat == true) {
       return name +
           ': ' +
@@ -246,7 +252,9 @@ class Item {
           '\n Checked, Repeat ON' +
           '\n' +
           'Due: ' +
-          deadline;
+          DateTime.parse(deadline).month.toString() +
+          ' / ' +
+          DateTime.parse(deadline).day.toString();
     } else
       return name +
           ': ' +
@@ -254,7 +262,9 @@ class Item {
           '\n Checked, Repeat OFF' +
           '\n' +
           'Due: ' +
-          deadline;
+          DateTime.parse(deadline).month.toString() +
+          ' / ' +
+          DateTime.parse(deadline).day.toString();
     //}
   }
 }

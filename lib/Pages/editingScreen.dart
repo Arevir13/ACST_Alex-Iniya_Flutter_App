@@ -299,7 +299,7 @@ class EditingScreenState extends State<EditingScreen> {
       setState(() {
         selectedDate = picked.toString();
         globals.agendaDisplay[globals.currentIndex]
-            .setDeadline(index, DateTime.parse(selectedDate));
+            .setDeadline(index, selectedDate);
       });
   }
 }
